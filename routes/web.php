@@ -13,13 +13,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
+//Route::get('/', function () {
+//
+//    return view('welcome');
+//});
+Route::get('/','Api\GeneralController@getOneSurvey');
+Route::post('/checkUserEmail','Api\GeneralController@checkUserEmail');
+Route::post('/getLocationSurvey','Api\GeneralController@getLocationSurvey');
+Route::post('/saveSurvey','Api\GeneralController@saveSurvey');
+Route::get('/checkUserEmail', function () {
+    return redirect('/');
 });
-
-
-
+Route::get('/getLocationSurvey', function () {
+    return redirect('/');
+});
+Route::get('/saveSurvey', function () {
+    return redirect('/');
+});
 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
@@ -79,6 +89,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/location/edit/{id}', 'LocationController@locationEdit')->name('admin.locations.edit');
         Route::post('/location/edit/{id}', 'LocationController@locationUpdate')->name('admin.locations.edit');
         Route::post('/location/delete/{id}', 'LocationController@locationDelete')->name('admin.locations.delete');
+
+        Route::get('/departments', 'DepartmentController@departments')->name('admin.departments');
+        Route::get('/department/create', 'DepartmentController@departmentCreate')->name('admin.departments.create');
+        Route::post('/department/create', 'DepartmentController@departmentStore')->name('admin.departments.create');
+        Route::get('/department/edit/{id}', 'DepartmentController@departmentEdit')->name('admin.departments.edit');
+        Route::post('/department/edit/{id}', 'DepartmentController@departmentUpdate')->name('admin.departments.edit');
+        Route::post('/department/delete/{id}', 'DepartmentController@departmentDelete')->name('admin.departments.delete');
 
 
         Route::get('/pages', 'PageController@pages')->name('admin.pages');

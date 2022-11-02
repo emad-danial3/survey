@@ -58,10 +58,10 @@
                                                         <?php $__currentLoopData = $category['users']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $induser=>$user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr>
                                                                 <th scope="row" style="max-width: 350px;width: 350px;overflow: hidden"><?php echo e($user['user']['name']); ?></th>
-                                                                <td><input type="radio"  name="option" value="جيد">  </td>
-                                                                <td><input type="radio"  name="option" value="متوسط">  </td>
-                                                                <td><input type="radio"  name="option" value="ضعيف">  </td>
-                                                                <td><input type="radio"  name="option" value="N/A"> </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="جيد">  </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="متوسط">  </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="ضعيف">  </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="N/A"> </td>
                                                             </tr>
 
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

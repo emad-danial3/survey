@@ -57,10 +57,10 @@
                                                         @foreach($category['users'] as $induser=>$user)
                                                             <tr>
                                                                 <th scope="row" style="max-width: 350px;width: 350px;overflow: hidden">{{$user['user']['name']}}</th>
-                                                                <td><input type="radio"  name="option" value="جيد">  </td>
-                                                                <td><input type="radio"  name="option" value="متوسط">  </td>
-                                                                <td><input type="radio"  name="option" value="ضعيف">  </td>
-                                                                <td><input type="radio"  name="option" value="N/A"> </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="جيد">  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="متوسط">  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="ضعيف">  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="N/A"> </td>
                                                             </tr>
 
                                                         @endforeach
