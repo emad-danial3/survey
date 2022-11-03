@@ -6,7 +6,10 @@ use App\DataTables\Admin\AdminDatatable;
 use App\DataTables\Admin\UserDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\userCreate;
+use App\Models\Category;
+use App\Models\Department;
 use App\Models\Page;
+use App\Models\Question;
 use App\Traits\AdminTrait;
 use App\Traits\UserTrait;
 use App\User;
@@ -23,11 +26,18 @@ class AdminController extends Controller
     {
         $admin = auth()->user();
         $userCount = User::count();
-        $pageCount = Page::count();
+        $surveyCount = Page::count();
+        $categoriesCount = Category::count();
+        $questionsCount = Question::count();
+        $departmentsCount = Department::count();
+
 
         return view('admin.dashboard', compact(
             'admin', 'userCount',
-                    'pageCount'
+                    'surveyCount',
+                    'categoriesCount',
+                    'questionsCount',
+                    'departmentsCount'
         ));
     }
 

@@ -21,6 +21,7 @@ return [
     'sInfoPostFix' => '',
     'sSearch' => 'بحث',
     'category' => 'القسم',
+    'survey' => 'إستطلاع',
     'sUrl' => '',
     'sInfoThousands' => 'معلومات الآلاف',
     'sLoadingRecords' => 'تحميل السجلات',

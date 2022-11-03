@@ -16,5 +16,9 @@ class Locations extends Model
     {
         return $this->hasMany('App\Models\Page','location_id','id');
     }
+    public function user_surveys()
+    {
+        return $this->hasMany('App\Models\UsersSurveys','location_id','id');
+    }
 
 }

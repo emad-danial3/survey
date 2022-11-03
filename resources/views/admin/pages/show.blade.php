@@ -24,14 +24,16 @@
                                     <div class="col-md-2">
                                     </div>
                                     <div class="col-md-8" style="text-align: center;border-radius: 7px;background-color: rgb(123, 55, 10); color: rgba(255, 255, 255, 1);padding: 12px 24px;">
+                                       @if($category['category'])
                                         <h3 class="box-title">{{$category['category']['name']}}</h3>
+                                        @endif
                                     </div>
                                     <div class="col-md-2">
                                     </div>
                                 </div>
-                                @if($category['category']['questions'] && count($category['category']['questions'])>0)
+                                @if($category['category'] && $category['category']['questions'] && count($category['category']['questions'])>0)
                                     @foreach($category['category']['questions'] as $ind=>$question)
-
+                                        @if($question['type'] == 'choice')
                                         <div class="row">
                                             <div class="col-md-2">
                                             </div>
@@ -57,10 +59,10 @@
                                                         @foreach($category['users'] as $induser=>$user)
                                                             <tr>
                                                                 <th scope="row" style="max-width: 350px;width: 350px;overflow: hidden">{{$user['user']['name']}}</th>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="جيد">  </td>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="متوسط">  </td>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="ضعيف">  </td>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="N/A"> </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="جيد" disabled>  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="متوسط" disabled>  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="ضعيف" disabled>  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="N/A" disabled> </td>
                                                             </tr>
 
                                                         @endforeach
@@ -74,6 +76,26 @@
 
 
                                         </div>
+
+                                        @else
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                </div>
+                                                <div class="col-md-8 card">
+                                                    <br>
+                                                    <div  style="display: flex;"> {!! $question['title'] !!}  @if($question['required'] == '1') <span style="color: #d93025">  &nbsp; *  </span> @endif</div>
+                                                    <br>
+                                                    <div>
+                                                        <input type="text" class="form-control specific_input" placeholder="Your answer"   disabled name="{{$question['id']}}"  @if($question['required'] == '1') required @endif >
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                </div>
+                                            </div>
+                                        @endif
+
                                     @endforeach
                                 @endif
 

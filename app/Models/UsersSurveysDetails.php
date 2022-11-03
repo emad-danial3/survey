@@ -12,5 +12,7 @@ class UsersSurveysDetails extends Model
     protected $fillable = [
         'users_surveys_id', 'question_id','user_id','chose_option','answer'
     ];
+    
+    
 
 }

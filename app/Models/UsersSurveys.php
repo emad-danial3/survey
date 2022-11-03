@@ -18,4 +18,12 @@ class UsersSurveys extends Model
         return $this->hasMany('App\Models\UsersSurveysDetails','users_surveys_id','id');
     }
 
+    public function location()
+    {
+        return $this->belongsTo('App\Models\Locations','location_id','id');
+    }
+    public function survey()
+    {
+        return $this->belongsTo('App\Models\Page','survey_id','id');
+    }
 }

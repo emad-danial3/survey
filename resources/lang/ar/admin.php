@@ -83,6 +83,7 @@ return [
     'category_id' => 'القسم',
     'location_id' => 'المكان',
     'department_id' => 'المكان',
+    'reports' => 'التقارير',
     'questions' => 'الأسئلة',
     'user_id' => 'العامل',
     'pageCreate' => 'اضافه صفحه',

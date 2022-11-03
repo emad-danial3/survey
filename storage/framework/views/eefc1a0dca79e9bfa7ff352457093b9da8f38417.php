@@ -13,41 +13,57 @@
             <div class="row">
 
                 <!-- ./col -->
-                <div class="col-lg-3 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>53%</h3>
 
 
-                            <p><?php echo e(trans('admin.Bounce Rate')); ?></p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-stats-bars"></i>
-                        </div>
-                        <a href="<?php echo e(url('admin/users')); ?>" class="small-box-footer">
-                            <i class="fa fa-arrow-circle-o-right"></i> <?php echo e(trans('admin.More Info')); ?> </a>
 
-                    </div>
-                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <!-- ./col -->
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-warning">
                         <div class="inner">
-                            <h3>60</h3>
+                            <h3><?php echo e($categoriesCount); ?></h3>
 
-                            <p>Test</p>
+                            <p><?php echo e(trans('admin.categories')); ?></p>
                         </div>
                         <div class="icon">
                             <i class="ion-ios-albums-outline"></i>
                         </div>
-                        <a href="<?php echo e(url('admin/users')); ?>" class="small-box-footer">
+                        <a href="<?php echo e(url('admin/categories')); ?>" class="small-box-footer">
                             <i class="fa fa-arrow-circle-o-right"></i> <?php echo e(trans('admin.More Info')); ?> </a>
 
                     </div>
                 </div>
                 <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3><?php echo e($questionsCount); ?></h3>
+
+                            <p><?php echo e(trans('admin.questions')); ?></p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="<?php echo e(url('admin/questions')); ?>" class="small-box-footer">
+                            <i class="fa fa-arrow-circle-o-right"></i> <?php echo e(trans('admin.More Info')); ?> </a>
+
+                    </div>
+                </div>
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
                     <div class="small-box bg-danger">
@@ -64,24 +80,25 @@
                             <i class="fa fa-arrow-circle-o-right"></i> <?php echo e(trans('admin.More Info')); ?> </a>
                     </div>
                 </div>
-                <!-- ./col -->
-
                 <div class="col-lg-3 col-6">
                     <!-- small box -->
-                    <div class="small-box bg-info">
+                    <div class="small-box bg-blue">
                         <div class="inner">
-                            <h3>70</h3>
+                            <h3><?php echo e($departmentsCount); ?></h3>
 
-                            <p>إختبار</p>
+
+                            <p><?php echo e(trans('admin.departments')); ?></p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-pie-graph"></i>
+                            <i class="ion ion-ios-people"></i>
                         </div>
-                        <a href="<?php echo e(url('admin/users')); ?>" class="small-box-footer">
+                        <a href="<?php echo e(url('admin/departments')); ?>" class="small-box-footer">
                             <i class="fa fa-arrow-circle-o-right"></i> <?php echo e(trans('admin.More Info')); ?> </a>
-
                     </div>
                 </div>
+                <!-- ./col -->
+
+
             </div>
             <div class="row">
 
@@ -91,9 +108,9 @@
                         <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-paper-plane"></i></span>
 
                         <div class="info-box-content">
-                            <h3 class="info-box-text" style="margin-top: 5px; "><?php echo e(trans('admin.Posts')); ?></h3>
-                            <span class="info-box-number"><?php echo e($pageCount); ?></span>
-                            <a href="<?php echo e(url('admin/posts')); ?>">
+                            <h3 class="info-box-text" style="margin-top: 5px; "><?php echo e(trans('admin.pages')); ?></h3>
+                            <span class="info-box-number"><?php echo e($surveyCount); ?></span>
+                            <a href="<?php echo e(url('admin/pages')); ?>">
                                 <i class="fa fa-angle-double-right"></i>
                             </a>
                         </div>

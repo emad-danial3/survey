@@ -1,7 +1,6 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
 
-
     <li class="treeview {{ active_menu('settings')[0] }}">
         <a href="#">
             <i class="fa fa-dashboard"></i> <span>{{ trans('admin.Dashboard') }}</span>
@@ -31,11 +30,11 @@
 
     <li class="treeview {{ active_menu('questions')[0] }}">
         <a href="#">
-            <i class="fa fa-align-justify"></i> <span>{{ trans('admin.questions') }}</span>
+            <i class="fa fa-bars"></i> <span>{{ trans('admin.questions') }}</span>
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('question')[1] }}">
-            <li class=""><a href="{{ url('admin/questions') }}"><i class="fa fa-align-justify"></i>{{ trans('admin.questions') }}</a></li>
+            <li class=""><a href="{{ url('admin/questions') }}"><i class="fa fa-bars"></i>{{ trans('admin.questions') }}</a></li>
             <li class=""><a href="{{ url(route('admin.questions.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
@@ -72,6 +71,16 @@
         <ul class="treeview-menu" style="{{ active_menu('location')[1] }}">
             <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-list"></i>{{ trans('admin.departments') }}</a></li>
             <li class=""><a href="{{ url(route('admin.departments.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
+        </ul>
+    </li>
+
+    <li class="treeview {{ active_menu('reports')[0] }}">
+        <a href="#">
+            <i class="fa fa-bar-chart"></i> <span>{{ trans('admin.reports') }}</span>
+            <span class="pull-right-container"></span>
+        </a>
+        <ul class="treeview-menu" style="{{ active_menu('report')[1] }}">
+            <li class=""><a href="{{ url('admin/reports') }}"><i class="fa fa-bar-chart"></i>{{ trans('admin.reports') }}</a></li>
         </ul>
     </li>
 

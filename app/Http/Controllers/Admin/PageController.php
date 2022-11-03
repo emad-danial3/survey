@@ -71,23 +71,25 @@ class PageController extends Controller
             ];
             return response()->json($response);
         } else {
-            $page_question = new PageQuestions();
-            $page_question->page_id = $request['page_id'];
-            $page_question->category_id = $request['category_id'];
-            $page_question->location_id = $request['location_id'];
-            $page_question->save();
-            if ($page_question) {
-                $page_question_users = new PageQuestionUsers();
-                $page_question_users->page_detail_id = $page_question->id;
-                $page_question_users->user_id = $request['user_id'];
-                $page_question_users->save();
+            if($request['page_id'] && $request['category_id'] && $request['location_id']){
+                $page_question = new PageQuestions();
+                $page_question->page_id = $request['page_id'];
+                $page_question->category_id = $request['category_id'];
+                $page_question->location_id = $request['location_id'];
+                $page_question->save();
+                if ($page_question) {
+                    $page_question_users = new PageQuestionUsers();
+                    $page_question_users->page_detail_id = $page_question->id;
+                    $page_question_users->user_id = $request['user_id'];
+                    $page_question_users->save();
+                }
+                $response = [
+                    'status' => 200,
+                    'message' => "Question Created Success",
+                    'data' => $page_question
+                ];
+                return response()->json($response);
             }
-            $response = [
-                'status' => 200,
-                'message' => "Question Created Success",
-                'data' => $page_question
-            ];
-            return response()->json($response);
         }
         $response = [
             'status' => 404,
@@ -147,6 +149,37 @@ class PageController extends Controller
             $page->to_date = $request['main_page_to_date'] ?? null;
             $page->save();
             if ($page) {
+                if($request['category_id'] && $request['location_id']){
+                $page_question = new PageQuestions();
+                $page_question->page_id = $page->id;
+                $page_question->category_id = $request['category_id'];
+                $page_question->location_id = $request['location_id'];
+                $page_question->save();
+                if ($page_question) {
+                    $question_users_array = json_decode($request->question_users, true);
+                    if ($question_users_array && count($question_users_array) > 0) {
+                        foreach ($question_users_array as $key => $user) {
+                            if ($user) {
+                                $page_question_users = new PageQuestionUsers();
+                                $page_question_users->page_detail_id = $page_question->id;
+                                $page_question_users->user_id = $user;
+                                $page_question_users->save();
+                            }
+                        }
+                    }
+                }
+                }
+            }
+            $response = [
+                'status' => 200,
+                'message' => "Question Created Success",
+                'data' => $page
+            ];
+            return response()->json($response);
+        } else {
+            $page = Page::findOrFail($request->page_id);
+            if ($page) {
+                if($request['category_id'] && $request['location_id']){
                 $page_question = new PageQuestions();
                 $page_question->page_id = $page->id;
                 $page_question->category_id = $request['category_id'];
@@ -166,34 +199,6 @@ class PageController extends Controller
                     }
                 }
             }
-            $response = [
-                'status' => 200,
-                'message' => "Question Created Success",
-                'data' => $page
-            ];
-            return response()->json($response);
-        } else {
-            $page = Page::findOrFail($request->page_id);
-            if ($page) {
-
-                $page_question = new PageQuestions();
-                $page_question->page_id = $page->id;
-                $page_question->category_id = $request['category_id'];
-                $page_question->location_id = $request['location_id'];
-                $page_question->save();
-                if ($page_question) {
-                    $question_users_array = json_decode($request->question_users, true);
-                    if ($question_users_array && count($question_users_array) > 0) {
-                        foreach ($question_users_array as $key => $user) {
-                            if ($user) {
-                                $page_question_users = new PageQuestionUsers();
-                                $page_question_users->page_detail_id = $page_question->id;
-                                $page_question_users->user_id = $user;
-                                $page_question_users->save();
-                            }
-                        }
-                    }
-                }
             }
             $response = [
                 'status' => 200,
@@ -266,6 +271,7 @@ class PageController extends Controller
                 if ($question_categoris_array && count($question_categoris_array) > 0) {
                     foreach ($question_categoris_array as $page_q) {
                         if ($page_q) {
+                            if($page_q->category_id && $page_q->location_id){
                             $page_question = new PageQuestions();
                             $page_question->page_id = $page_copy->page_id;
                             $page_question->category_id = $page_q->category_id;
@@ -281,6 +287,7 @@ class PageController extends Controller
                                     $page_question_users->save();
                                 }
                             }
+                        }
                         }
                     }
                 }

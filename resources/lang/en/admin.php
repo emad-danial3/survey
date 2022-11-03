@@ -80,6 +80,7 @@ return [
     'add' => 'Add',
     'notifications' => ' Notifications',
     'category_id' => 'Category Name',
+    'reports' => 'Reports',
     'location_id' => 'Location Name',
     'department_id' => 'Department Name',
     'questions' => 'Questions',

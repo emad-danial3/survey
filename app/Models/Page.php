@@ -12,4 +12,9 @@ class Page extends Model
         'id','name','from_date','to_date','status'
     ];
 
+    public function user_surveys()
+    {
+        return $this->hasMany('App\Models\UsersSurveys','survey_id','id');
+    }
+
 }

@@ -25,14 +25,16 @@
                                     <div class="col-md-2">
                                     </div>
                                     <div class="col-md-8" style="text-align: center;border-radius: 7px;background-color: rgb(123, 55, 10); color: rgba(255, 255, 255, 1);padding: 12px 24px;">
+                                       <?php if($category['category']): ?>
                                         <h3 class="box-title"><?php echo e($category['category']['name']); ?></h3>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="col-md-2">
                                     </div>
                                 </div>
-                                <?php if($category['category']['questions'] && count($category['category']['questions'])>0): ?>
+                                <?php if($category['category'] && $category['category']['questions'] && count($category['category']['questions'])>0): ?>
                                     <?php $__currentLoopData = $category['category']['questions']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ind=>$question): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
+                                        <?php if($question['type'] == 'choice'): ?>
                                         <div class="row">
                                             <div class="col-md-2">
                                             </div>
@@ -58,10 +60,10 @@
                                                         <?php $__currentLoopData = $category['users']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $induser=>$user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <tr>
                                                                 <th scope="row" style="max-width: 350px;width: 350px;overflow: hidden"><?php echo e($user['user']['name']); ?></th>
-                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="جيد">  </td>
-                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="متوسط">  </td>
-                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="ضعيف">  </td>
-                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="N/A"> </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="جيد" disabled>  </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="متوسط" disabled>  </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="ضعيف" disabled>  </td>
+                                                                <td><input type="radio"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="N/A" disabled> </td>
                                                             </tr>
 
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -75,6 +77,26 @@
 
 
                                         </div>
+
+                                        <?php else: ?>
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                </div>
+                                                <div class="col-md-8 card">
+                                                    <br>
+                                                    <div  style="display: flex;"> <?php echo $question['title']; ?>  <?php if($question['required'] == '1'): ?> <span style="color: #d93025">  &nbsp; *  </span> <?php endif; ?></div>
+                                                    <br>
+                                                    <div>
+                                                        <input type="text" class="form-control specific_input" placeholder="Your answer"   disabled name="<?php echo e($question['id']); ?>"  <?php if($question['required'] == '1'): ?> required <?php endif; ?> >
+                                                        <br>
+                                                        <br>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php endif; ?>
 

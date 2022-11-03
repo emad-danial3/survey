@@ -35,3 +35,33 @@
 .example-modal .modal {
     background: transparent !important;
 }
+
+ .category_name{
+     text-align: center;
+     border-radius: 7px;
+     background-color: rgb(123, 55, 10);
+     color: rgba(255, 255, 255, 1);
+     padding: 12px 24px;
+ }
+.card{
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+.user_name{
+    max-width: 350px;
+    width: 350px;
+    overflow: hidden
+}
+.this_option{
+    width: 20px;
+    height: 20px;
+}
+.specific_input,.specific_input:focus{
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+
+

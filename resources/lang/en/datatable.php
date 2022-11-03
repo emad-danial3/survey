@@ -32,6 +32,7 @@ return [
     'sSortDescending' => 'Sort Descending',
     'show_all' => 'Show All',
     'title' => 'Title',
+    'survey' => 'Survey',
 
     'status' => 'Status',
     'location' => 'Location',
