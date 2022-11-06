@@ -76,19 +76,24 @@
 
                                                             @if($category['users'] && count($category['users'])>0)
                                                                 @foreach($category['users'] as $induser=>$user)
-{{--                                                                    @if($UsersSurveysDetails && count($UsersSurveysDetails)>0)--}}
-{{--                                                                        @foreach($UsersSurveysDetails as $iii=>$uudd)--}}
-{{--                                                                            @if($question['id'] == $uudd['question_id'] && $user['user_id'] == $uudd['user_id'] )--}}
-{{--                                                                                --}}
-{{--                                                                            @endif--}}
-{{--                                                                        @endforeach--}}
-{{--                                                                    @endif--}}
+                                                                    @php
+                                                                        $chosen ='';
+                                                                    @endphp
+                                                                    @if($UsersSurveysDetails && count($UsersSurveysDetails)>0)
+                                                                        @foreach($UsersSurveysDetails as $iii=>$uudd)
+                                                                            @if($question['id'] == $uudd['question_id'] && $user['user_id'] == $uudd['user_id'] )
+                                                                                @php
+                                                                                    $chosen =$uudd['chose_option'];
+                                                                                @endphp
+                                                                            @endif
+                                                                        @endforeach
+                                                                    @endif
                                                                     <tr>
                                                                         <th scope="row" class="user_name">{{$user['user']['name']}}</th>
-                                                                        <td class="text-center"><input type="radio" class="this_option" name="{{$question['id']}}-{{$user['user']['id']}}" value="option_1" @if($question['required'] == '1') required @endif  disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_2" disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_3" disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_4" disabled> </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option" name="{{$question['id']}}-{{$user['user']['id']}}" value="option_1" @if($chosen == 'option_1') checked @endif  disabled>  </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_2"@if($chosen == 'option_2') checked @endif disabled>  </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_3"@if($chosen == 'option_3') checked @endif disabled>  </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_4" @if($chosen == 'option_4') checked @endif disabled> </td>
                                                                     </tr>
 
                                                                 @endforeach
@@ -100,6 +105,20 @@
                                                     </div>
                                                 </div>
                                             @else
+
+                                            @php
+                                                $answer ='';
+                                            @endphp
+                                            @if($UsersSurveysDetails && count($UsersSurveysDetails)>0)
+                                                @foreach($UsersSurveysDetails as $iii=>$uudd)
+                                                    @if($question['id'] == $uudd['question_id'] )
+                                                        @php
+                                                            $answer =$uudd['answer'];
+                                                        @endphp
+                                                    @endif
+                                                @endforeach
+                                            @endif
+
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                     </div>
@@ -108,7 +127,7 @@
                                                         <div  style="display: flex;"> {!! $question['title'] !!}  @if($question['required'] == '1') <span style="color: #d93025">  &nbsp; *  </span> @endif</div>
                                                         <br>
                                                         <div>
-                                                            <input type="text" class="form-control specific_input" placeholder="Your answer"  name="{{$question['id']}}"  @if($question['required'] == '1') required @endif  disabled>
+                                                            <input type="text" class="form-control specific_input" placeholder="Your answer"  name="{{$question['id']}}" value="{{$answer}}"  disabled>
                                                             <br>
                                                             <br>
                                                         </div>

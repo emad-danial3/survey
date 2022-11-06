@@ -147,6 +147,10 @@ class PageController extends Controller
             $page->name = $request['main_page_title'];
             $page->from_date = $request['main_page_date'] ?? null;
             $page->to_date = $request['main_page_to_date'] ?? null;
+            $page->option_1_percent = $request['main_page_option_1_percent'] ?? 0;
+            $page->option_2_percent = $request['main_page_option_2_percent'] ?? 0;
+            $page->option_3_percent = $request['main_page_option_3_percent'] ?? 0;
+            $page->option_4_percent = $request['main_page_option_4_percent'] ?? 0;
             $page->save();
             if ($page) {
                 if($request['category_id'] && $request['location_id']){

@@ -9,7 +9,7 @@ class Page extends Model
     public $table="pages";
     public $timestamps = true;
     protected $fillable = [
-        'id','name','from_date','to_date','status'
+        'id','name','from_date','to_date','option_1_percent','option_2_percent','option_3_percent','option_4_percent','status'
     ];
 
     public function user_surveys()

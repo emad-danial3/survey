@@ -1,59 +1,69 @@
-@extends('admin.layouts.app')
-@inject('model', 'App\Models\Page')
-@section('page_title')
-    {{trans('admin.pageCreate')}}
-@endsection
-@section('small_title')
-    {{trans('admin.pages')}}
-@endsection
-@section('content')
+
+<?php $model = app('App\Models\Page'); ?>
+<?php $__env->startSection('page_title'); ?>
+    <?php echo e(trans('admin.pageCreate')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('small_title'); ?>
+    <?php echo e(trans('admin.pages')); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 
     <!-- Main content -->
     <section class="content">
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
+        <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
         <!-- Default box -->
         <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">{{trans('admin.pageCreate')}}</h3>
+                <h3 class="box-title"><?php echo e(trans('admin.pageCreate')); ?></h3>
             </div>
             <div class="box-body">
                 <div class="box">
-                    @include('partials.validations_errors')
+                    <?php echo $__env->make('partials.validations_errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     <div class="box-body">
-                        {!! Form::model($model, [
+                        <?php echo Form::model($model, [
                             'action' => ['Admin\PageController@pageStore'],
                             'method' =>'post',
                             'files' =>true,
-                        ]) !!}
+                        ]); ?>
+
 
                         <div class="form-group col-md-6">
-                            <label for="name">{{trans('admin.name')}}</label>
-                            {!! Form::text('name', null , ['class' => 'form-control', 'required' => 'required','id'=>'main_page_title']) !!}
+                            <label for="name"><?php echo e(trans('admin.name')); ?></label>
+                            <?php echo Form::text('name', null , ['class' => 'form-control', 'required' => 'required','id'=>'main_page_title']); ?>
+
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label for="date">{{trans('admin.from_date')}}</label>
-                            {!! Form::date('date', null , ['class' => 'form-control', 'required' => 'required','id'=>'date']) !!}
+                            <label for="date"><?php echo e(trans('admin.from_date')); ?></label>
+                            <?php echo Form::date('date', null , ['class' => 'form-control', 'required' => 'required','id'=>'date']); ?>
+
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="to_date">{{trans('admin.to_date')}}</label>
-                            {!! Form::date('to_date', null , ['class' => 'form-control', 'required' => 'required','id'=>'to_date']) !!}
+                            <label for="to_date"><?php echo e(trans('admin.to_date')); ?></label>
+                            <?php echo Form::date('to_date', null , ['class' => 'form-control', 'required' => 'required','id'=>'to_date']); ?>
+
                         </div>
                         <div class="form-group col-md-3">
                             <label for="option_1_percent">Pption 1 percent (%)</label>
-                            {!! Form::number('option_1_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_1_percent']) !!}
+                            <?php echo Form::number('option_1_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_1_percent']); ?>
+
                         </div>
                         <div class="form-group col-md-3">
                             <label for="option_2_percent">Pption 2 percent (%)</label>
-                            {!! Form::number('option_2_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_2_percent']) !!}
+                            <?php echo Form::number('option_2_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_2_percent']); ?>
+
                         </div>
                         <div class="form-group col-md-3">
                             <label for="option_3_percent">Pption 3 percent (%)</label>
-                            {!! Form::number('option_3_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_3_percent']) !!}
+                            <?php echo Form::number('option_3_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_3_percent']); ?>
+
                         </div>
                         <div class="form-group col-md-3">
                             <label for="option_4_percent">Pption 4 percent (%)</label>
-                            {!! Form::number('option_4_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_4_percent']) !!}
+                            <?php echo Form::number('option_4_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_4_percent']); ?>
+
                         </div>
 
 <br>
@@ -77,46 +87,47 @@
                                       </h4>
                                   </div>
                                   <div class="col-md-6 ">
-                                      @inject('locations', 'App\Models\Locations')
-                                      @if($locations->where('id','>', 0)->where('status', '1')->count() != 0)
+                                      <?php $locations = app('App\Models\Locations'); ?>
+                                      <?php if($locations->where('id','>', 0)->where('status', '1')->count() != 0): ?>
                                           <div class="form-group">
                                               <h4>
-                                                  <label for="location_id">{{trans('admin.location_id')}} *</label>
+                                                  <label for="location_id"><?php echo e(trans('admin.location_id')); ?> *</label>
                                               </h4>
 
                                               <select class="form-control select2" id="location_id" required
                                                       name="location_id">
-                                                  <option value="0">{{trans('admin.location_id')}}</option>
-                                                  @foreach($locations->where('id','>', 0)->where('status', '1')->get() as $location)
+                                                  <option value="0"><?php echo e(trans('admin.location_id')); ?></option>
+                                                  <?php $__currentLoopData = $locations->where('id','>', 0)->where('status', '1')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                       <option
-                                                          value="{{$location->id}}">
-                                                          <td>{{$location->name}}</td>
+                                                          value="<?php echo e($location->id); ?>">
+                                                          <td><?php echo e($location->name); ?></td>
                                                       </option>
-                                                  @endforeach
+                                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                               </select>
                                           </div>
-                                      @endif
+                                      <?php endif; ?>
                                   </div>
                                   <div class="col-md-6 ">
-                                      @inject('categories', 'App\Models\Category')
-                                      @if($categories->where('id','>', 0)->where('status', '1')->count() != 0)
+                                      <?php $categories = app('App\Models\Category'); ?>
+                                      <?php if($categories->where('id','>', 0)->where('status', '1')->count() != 0): ?>
                                           <div class="form-group">
                                               <h4>
-                                                  <label for="category_id">{{trans('admin.category_id')}} *</label>
+                                                  <label for="category_id"><?php echo e(trans('admin.category_id')); ?> *</label>
                                               </h4>
 
                                               <select class="form-control select2" id="category_id" required
                                                       name="category_id">
-                                                  <option value="0">{{trans('admin.category_id')}}</option>
-                                                  @foreach($categories->where('id','>', 0)->where('status', '1')->get() as $category)
+                                                  <option value="0"><?php echo e(trans('admin.category_id')); ?></option>
+                                                  <?php $__currentLoopData = $categories->where('id','>', 0)->where('status', '1')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                       <option
-                                                          value="{{$category->id}}">
-                                                         {{$category->name}}
+                                                          value="<?php echo e($category->id); ?>">
+                                                         <?php echo e($category->name); ?>
+
                                                       </option>
-                                                  @endforeach
+                                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                               </select>
                                           </div>
-                                      @endif
+                                      <?php endif; ?>
                                   </div>
 
                                   <div class="col-md-12 row" id="questions_users_container">
@@ -132,21 +143,22 @@
 
                                           <div class=" col-md-6">
 
-                                              @inject('users', 'App\User')
-                                              @if($users->where('id','>', 0)->where('status', 'active')->count() != 0)
+                                              <?php $users = app('App\User'); ?>
+                                              <?php if($users->where('id','>', 0)->where('status', 'active')->count() != 0): ?>
                                                   <div class="form-group col-md-12">
-                                                      <label for="user_id">Chose {{trans('admin.user_id')}} </label>
+                                                      <label for="user_id">Chose <?php echo e(trans('admin.user_id')); ?> </label>
                                                      <div class="row" style="display: flex">
                                                         <div class="col-md-10">
                                                          <select class="form-control " id="selected_user" required
                                                                  name="users">
                                                              <option value="">Chose User</option>
-                                                             @foreach($users->where('id','>', 0)->where('status', 'active')->where('user_type', 'worker') ->get() as $user)
+                                                             <?php $__currentLoopData = $users->where('id','>', 0)->where('status', 'active')->where('user_type', 'worker') ->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                  <option
-                                                                     value="{{$user->id}}">
-                                                                     {{$user->name}}
+                                                                     value="<?php echo e($user->id); ?>">
+                                                                     <?php echo e($user->name); ?>
+
                                                                  </option>
-                                                             @endforeach
+                                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                          </select>
                                                         </div>
                                                          <div class="col-md-2">
@@ -155,7 +167,7 @@
                                                      </div>
 
                                                   </div>
-                                              @endif
+                                              <?php endif; ?>
                                           </div>
 
                                   </div>
@@ -173,10 +185,11 @@
 
 
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Finish & {{trans('admin.submit')}} </button>
+                            <button class="btn btn-primary" type="submit">Finish & <?php echo e(trans('admin.submit')); ?> </button>
                         </div>
 
-                        {!! Form::close() !!}
+                        <?php echo Form::close(); ?>
+
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -187,9 +200,9 @@
 
     </section>
     <!-- /.content -->
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('js')
+<?php $__env->startPush('js'); ?>
 
     <script>
         $(document).ready(function () {
@@ -400,4 +413,6 @@
             $("#questions_container_body").css('border-radius','5px');
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH F:\eva\survey\resources\views/admin/pages/create.blade.php ENDPATH**/ ?>

@@ -104,10 +104,10 @@ class UserSurveysController extends Controller
             $question_options = Setting::first()->toArray();
             $UsersSurveysDetails= UsersSurveysDetails::where('users_surveys_id', $model->id)->get();
             $UsersDetails= $UsersSurveysDetails->toArray();
-//dd($page_question);
+//dd($UsersDetails);
 //            foreach($page_question as $key=>$category){
 //                foreach($category['category']['questions'] as $ind=>$question){
-//                    foreach($category['users'] as $induser=>$user){
+//           Survey Create         foreach($category['users'] as $induser=>$user){
 //                        foreach($UsersDetails as $inser=>$userans){
 //                           if($question['id'] == $userans['question_id'] && $user['user_id'] == $userans['user_id'] ){
 //                              $ABSWER=$userans['chose_option'];
