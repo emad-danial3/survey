@@ -80,6 +80,7 @@ return [
     'title' => 'العنوان',
     'add' => 'اضافه',
     'pages' => 'استطلاعات الراي',
+    'statistics' => 'الإحصاء',
     'category_id' => 'القسم',
     'location_id' => 'المكان',
     'department_id' => 'المكان',

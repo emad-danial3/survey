@@ -27,6 +27,11 @@ trait PageTrait
         $page->name = $request['name'] ??null;
         $page->from_date = $request['date'] ??null;
         $page->to_date = $request['to_date'] ??null;
+        $page->option_1_percent = $request['option_1_percent'] ?? 0;
+        $page->option_2_percent = $request['option_2_percent'] ?? 0;
+        $page->option_3_percent = $request['option_3_percent'] ?? 0;
+        $page->option_4_percent = $request['option_4_percent'] ?? 0;
+
         $page->save();
         DB::commit();
         $page = Page::find($page->id);

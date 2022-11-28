@@ -60,6 +60,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::get('/users', 'UserController@users')->name('admin.users');
         Route::get('/user/create', 'UserController@userCreate')->name('admin.users.create');
         Route::get('/user/posts/{id}', 'UserController@userPosts')->name('admin.users.posts');
+        Route::get('/user/surveys/{id}', 'UserController@userSurveys')->name('admin.users.surveys');
+        Route::post('/getUserStatistic', 'UserController@getUserStatistic')->name('admin.surveys');
         Route::post('/user/create', 'UserController@userStore')->name('admin.users.create');
         Route::get('/user/edit/{id}', 'UserController@userEdit')->name('admin.users.edit');
         Route::post('/user/edit/{id}', 'UserController@userUpdate')->name('admin.users.edit');
@@ -73,7 +75,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 //        Route::post('/user/create', 'UserController@userStore')->name('admin.users.create');
 //        Route::get('/user/edit/{id}', 'UserController@userEdit')->name('admin.users.edit');
 //        Route::post('/user/edit/{id}', 'UserController@userUpdate')->name('admin.users.edit');
-//        Route::post('/user/delete/{id}', 'UserController@userDelete')->name('admin.users.delete');
+        Route::post('/report/delete/{id}', 'UserSurveysController@reportDelete')->name('admin.reports.delete');
 
 
 

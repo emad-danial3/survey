@@ -42,7 +42,7 @@
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 $.ajax({
                     type: 'POST',
-                    url: "<?php echo e(url('admin/user/delete')); ?>/" + id,
+                    url: "<?php echo e(url('admin/report/delete')); ?>/" + id,
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function (results) {

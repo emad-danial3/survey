@@ -6,7 +6,10 @@ use App\DataTables\Admin\UserDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\userCreate;
 use App\Models\Order;
+use App\Models\PageQuestions;
 use App\Models\Posts;
+use App\Models\Page;
+use App\Models\UsersSurveys;
 use App\Traits\UserTrait;
 use App\User;
 use App\VerificationCode;
@@ -37,11 +40,42 @@ class UserController extends Controller
     }
     public function userPosts($id)
     {
-
-
         $orders = Posts::query()->select('posts.*')->get();
 //dd($orders);
         return view('admin.users.posts',compact('orders'));
+    }
+    public function userSurveys($id)
+    {
+        $user = User::findOrFail($id);
+        $surveys = Page::all();
+        $lastSurveyId='';
+        $lastSurveyId = Page::where('status', '1')->first()->id;
+        $usersMakeSurvey=UsersSurveys::where('survey_id',$lastSurveyId)->where('location_id',$user->location_id)->get();
+dd($usersMakeSurvey);
+
+
+        $page_question = PageQuestions::where('page_id', $lastSurveyId)->where('location_id', $user->location_id)->with('category')
+            ->with(['category' => function ($query) {
+                $query->with('questions');
+            }])
+            ->with('location')->get()->toArray();
+//dd($page_question);
+        return view('admin.users.surveys',compact('user','surveys','lastSurveyId'));
+    }
+    public function getUserStatistic(Request $request)
+    {
+        dd($request);
+        $user = User::findOrFail($id);
+        $surveys = Page::all();
+        $lastSurveyId=$surveyId;
+
+        $page_question = PageQuestions::where('page_id', $lastSurveyId)->where('location_id', $user->location_id)->with('category')
+            ->with(['category' => function ($query) {
+                $query->with('questions');
+            }])
+            ->with('location')->get()->toArray();
+//dd($page_question);
+        return view('admin.users.surveys',compact('user','surveys','lastSurveyId'));
     }
 
 

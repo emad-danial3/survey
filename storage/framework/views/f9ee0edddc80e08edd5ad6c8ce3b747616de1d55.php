@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('page_title'); ?>
     <?php echo e(trans('admin.pageShow')); ?>
 
@@ -77,19 +78,24 @@
 
                                                             <?php if($category['users'] && count($category['users'])>0): ?>
                                                                 <?php $__currentLoopData = $category['users']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $induser=>$user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
-
-
-
-
-
-
+                                                                    <?php
+                                                                        $chosen ='';
+                                                                    ?>
+                                                                    <?php if($UsersSurveysDetails && count($UsersSurveysDetails)>0): ?>
+                                                                        <?php $__currentLoopData = $UsersSurveysDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $iii=>$uudd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                            <?php if($question['id'] == $uudd['question_id'] && $user['user_id'] == $uudd['user_id'] ): ?>
+                                                                                <?php
+                                                                                    $chosen =$uudd['chose_option'];
+                                                                                ?>
+                                                                            <?php endif; ?>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php endif; ?>
                                                                     <tr>
                                                                         <th scope="row" class="user_name"><?php echo e($user['user']['name']); ?></th>
-                                                                        <td class="text-center"><input type="radio" class="this_option" name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_1" <?php if($question['required'] == '1'): ?> required <?php endif; ?>  disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_2" disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_3" disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_4" disabled> </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option" name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_1" <?php if($chosen == 'option_1'): ?> checked <?php endif; ?>  disabled>  </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_2"<?php if($chosen == 'option_2'): ?> checked <?php endif; ?> disabled>  </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_3"<?php if($chosen == 'option_3'): ?> checked <?php endif; ?> disabled>  </td>
+                                                                        <td class="text-center"><input type="radio" class="this_option"  name="<?php echo e($question['id']); ?>-<?php echo e($user['user']['id']); ?>" value="option_4" <?php if($chosen == 'option_4'): ?> checked <?php endif; ?> disabled> </td>
                                                                     </tr>
 
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -101,6 +107,20 @@
                                                     </div>
                                                 </div>
                                             <?php else: ?>
+
+                                            <?php
+                                                $answer ='';
+                                            ?>
+                                            <?php if($UsersSurveysDetails && count($UsersSurveysDetails)>0): ?>
+                                                <?php $__currentLoopData = $UsersSurveysDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $iii=>$uudd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($question['id'] == $uudd['question_id'] ): ?>
+                                                        <?php
+                                                            $answer =$uudd['answer'];
+                                                        ?>
+                                                    <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php endif; ?>
+
                                                 <div class="row">
                                                     <div class="col-md-2">
                                                     </div>
@@ -109,7 +129,7 @@
                                                         <div  style="display: flex;"> <?php echo $question['title']; ?>  <?php if($question['required'] == '1'): ?> <span style="color: #d93025">  &nbsp; *  </span> <?php endif; ?></div>
                                                         <br>
                                                         <div>
-                                                            <input type="text" class="form-control specific_input" placeholder="Your answer"  name="<?php echo e($question['id']); ?>"  <?php if($question['required'] == '1'): ?> required <?php endif; ?>  disabled>
+                                                            <input type="text" class="form-control specific_input" placeholder="Your answer"  name="<?php echo e($question['id']); ?>" value="<?php echo e($answer); ?>"  disabled>
                                                             <br>
                                                             <br>
                                                         </div>

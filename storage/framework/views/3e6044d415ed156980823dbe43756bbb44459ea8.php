@@ -20,7 +20,9 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="<?php echo e(active_menu('categor')[1]); ?>">
-            <li class=""><a href="<?php echo e(url('admin/categories')); ?>"><i class="fa fa-align-justify"></i><?php echo e(trans('admin.categories')); ?></a></li>
+            <li class=""><a href="<?php echo e(url('admin/categories')); ?>">
+
+                    <i class="fa fa-globe"></i><?php echo e(trans('admin.categories')); ?></a></li>
             <li class=""><a href="<?php echo e(url(route('admin.categories.create'))); ?>"><i class="fa fa-plus"></i><?php echo e(trans('admin.add')); ?></a></li>
         </ul>
     </li>
@@ -34,7 +36,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="<?php echo e(active_menu('question')[1]); ?>">
-            <li class=""><a href="<?php echo e(url('admin/questions')); ?>"><i class="fa fa-bars"></i><?php echo e(trans('admin.questions')); ?></a></li>
+            <li class=""><a href="<?php echo e(url('admin/questions')); ?>"><i class="fa fa-globe"></i><?php echo e(trans('admin.questions')); ?></a></li>
             <li class=""><a href="<?php echo e(url(route('admin.questions.create'))); ?>"><i class="fa fa-plus"></i><?php echo e(trans('admin.add')); ?></a></li>
         </ul>
     </li>
@@ -45,7 +47,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="<?php echo e(active_menu('posts')[1]); ?>">
-            <li class=""><a href="<?php echo e(url('admin/pages')); ?>"><i class="fa fa-paper-plane"></i><?php echo e(trans('admin.pages')); ?></a></li>
+            <li class=""><a href="<?php echo e(url('admin/pages')); ?>"><i class="fa fa-globe"></i><?php echo e(trans('admin.pages')); ?></a></li>
             <li class=""><a href="<?php echo e(url(route('admin.pages.create'))); ?>"><i class="fa fa-plus"></i><?php echo e(trans('admin.add')); ?></a></li>
         </ul>
     </li>
@@ -57,7 +59,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="<?php echo e(active_menu('user')[1]); ?>">
-            <li class=""><a href="<?php echo e(url('admin/users')); ?>"><i class="fa fa-users"></i><?php echo e(trans('admin.users')); ?></a></li>
+            <li class=""><a href="<?php echo e(url('admin/users')); ?>"><i class="fa fa-globe"></i><?php echo e(trans('admin.users')); ?></a></li>
             <li class=""><a href="<?php echo e(url(route('admin.users.create'))); ?>"><i class="fa fa-plus"></i><?php echo e(trans('admin.add')); ?></a></li>
         </ul>
     </li>
@@ -69,7 +71,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="<?php echo e(active_menu('location')[1]); ?>">
-            <li class=""><a href="<?php echo e(url('admin/departments')); ?>"><i class="fa fa-list"></i><?php echo e(trans('admin.departments')); ?></a></li>
+            <li class=""><a href="<?php echo e(url('admin/departments')); ?>"><i class="fa fa-globe"></i><?php echo e(trans('admin.departments')); ?></a></li>
             <li class=""><a href="<?php echo e(url(route('admin.departments.create'))); ?>"><i class="fa fa-plus"></i><?php echo e(trans('admin.add')); ?></a></li>
         </ul>
     </li>
@@ -80,7 +82,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="<?php echo e(active_menu('report')[1]); ?>">
-            <li class=""><a href="<?php echo e(url('admin/reports')); ?>"><i class="fa fa-bar-chart"></i><?php echo e(trans('admin.reports')); ?></a></li>
+            <li class=""><a href="<?php echo e(url('admin/reports')); ?>"><i class="fa fa-globe"></i><?php echo e(trans('admin.reports')); ?></a></li>
         </ul>
     </li>
 

@@ -40,19 +40,19 @@
                             {!! Form::date('to_date', null , ['class' => 'form-control', 'required' => 'required','id'=>'to_date']) !!}
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="option_1_percent">Pption 1 percent (%)</label>
+                            <label for="option_1_percent">Option {{$question_options['option_1']}}  percent (%)</label>
                             {!! Form::number('option_1_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_1_percent']) !!}
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="option_2_percent">Pption 2 percent (%)</label>
+                            <label for="option_2_percent">Option {{$question_options['option_2']}} percent (%)</label>
                             {!! Form::number('option_2_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_2_percent']) !!}
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="option_3_percent">Pption 3 percent (%)</label>
+                            <label for="option_3_percent"> Option {{$question_options['option_3']}} percent (%)</label>
                             {!! Form::number('option_3_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_3_percent']) !!}
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="option_4_percent">Pption 4 percent (%)</label>
+                            <label for="option_4_percent"> Option {{$question_options['option_4']}} percent (%)</label>
                             {!! Form::number('option_4_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_4_percent']) !!}
                         </div>
 
@@ -133,7 +133,7 @@
                                           <div class=" col-md-6">
 
                                               @inject('users', 'App\User')
-                                              @if($users->where('id','>', 0)->where('status', 'active')->count() != 0)
+                                              @if($users->where('id','>', 0)->where('status', 'active')->where('user_type', 'worker')->count() != 0)
                                                   <div class="form-group col-md-12">
                                                       <label for="user_id">Chose {{trans('admin.user_id')}} </label>
                                                      <div class="row" style="display: flex">
@@ -173,7 +173,8 @@
 
 
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Finish & {{trans('admin.submit')}} </button>
+                            <a href="{{ url('admin/pages') }}" class="btn btn-primary">Finish & {{trans('admin.submit')}} </a>
+{{--                            <button class="btn btn-primary" type="submit">Finish & {{trans('admin.submit')}} </button>--}}
                         </div>
 
                         {!! Form::close() !!}

@@ -27,13 +27,13 @@ class UserDatatable extends DataTable
             ->addColumn('location', function ($contact){
                 return  \App\Models\Locations::where('id', $contact->location_id)->first()->name ;
             })
-//            ->addColumn('posts', 'admin.users.btn.posts')
+            ->addColumn('surveys', 'admin.users.btn.surveys')
             ->addColumn('action', 'admin.users.btn.action')
 
             ->rawColumns([
                 'action',
                 'location',
-//                'posts',
+                'surveys',
             ]);
     }
 
@@ -126,16 +126,16 @@ class UserDatatable extends DataTable
                 'searchable' => false,
 
             ]
-//            , [
-//                'name' => 'posts',
-//                'data' => 'posts',
-//                'title' => trans('admin.Posts'),
-//                'exportable' => false,
-//                'printable' => false,
-//                'orderable' => false,
-//                'searchable' => false,
-//
-//            ]
+            , [
+                'name' => 'surveys',
+                'data' => 'surveys',
+                'title' => trans('admin.pages'),
+                'exportable' => false,
+                'printable' => false,
+                'orderable' => false,
+                'searchable' => false,
+
+            ]
         ];
     }
 

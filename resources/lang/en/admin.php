@@ -81,6 +81,7 @@ return [
     'notifications' => ' Notifications',
     'category_id' => 'Category Name',
     'reports' => 'Reports',
+    'statistics' => 'Statistics',
     'location_id' => 'Location Name',
     'department_id' => 'Department Name',
     'questions' => 'Questions',

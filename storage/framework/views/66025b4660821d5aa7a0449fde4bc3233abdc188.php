@@ -1,3 +1,4 @@
+
 <?php $model = app('App\Models\Page'); ?>
 <?php $__env->startSection('page_title'); ?>
     <?php echo e(trans('admin.pageCreate')); ?>
@@ -42,6 +43,26 @@
                         <div class="form-group col-md-3">
                             <label for="to_date"><?php echo e(trans('admin.to_date')); ?></label>
                             <?php echo Form::date('to_date', null , ['class' => 'form-control', 'required' => 'required','id'=>'to_date']); ?>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_1_percent">Option <?php echo e($question_options['option_1']); ?>  percent (%)</label>
+                            <?php echo Form::number('option_1_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_1_percent']); ?>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_2_percent">Option <?php echo e($question_options['option_2']); ?> percent (%)</label>
+                            <?php echo Form::number('option_2_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_2_percent']); ?>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_3_percent"> Option <?php echo e($question_options['option_3']); ?> percent (%)</label>
+                            <?php echo Form::number('option_3_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_3_percent']); ?>
+
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_4_percent"> Option <?php echo e($question_options['option_4']); ?> percent (%)</label>
+                            <?php echo Form::number('option_4_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_4_percent']); ?>
 
                         </div>
 
@@ -164,7 +185,8 @@
 
 
                         <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Finish & <?php echo e(trans('admin.submit')); ?> </button>
+                            <a href="<?php echo e(url('admin/pages')); ?>" class="btn btn-primary">Finish & <?php echo e(trans('admin.submit')); ?> </a>
+
                         </div>
 
                         <?php echo Form::close(); ?>
@@ -236,6 +258,10 @@
                 let main_page_title= $("#main_page_title").val();
                 let main_page_date= $("#date").val();
                 let main_page_to_date= $("#to_date").val();
+                let main_page_option_1_percent= $("#option_1_percent").val();
+                let main_page_option_2_percent= $("#option_2_percent").val();
+                let main_page_option_3_percent= $("#option_3_percent").val();
+                let main_page_option_4_percent= $("#option_4_percent").val();
                 let location_id = $("#location_id").val();
                 let category_id = $("#category_id").val();
 
@@ -246,6 +272,10 @@
                     formData.append('main_page_title',main_page_title);
                     formData.append('main_page_date',main_page_date);
                     formData.append('main_page_to_date',main_page_to_date);
+                    formData.append('main_page_option_1_percent',main_page_option_1_percent);
+                    formData.append('main_page_option_2_percent',main_page_option_2_percent);
+                    formData.append('main_page_option_3_percent',main_page_option_3_percent);
+                    formData.append('main_page_option_4_percent',main_page_option_4_percent);
                     formData.append('location_id',location_id);
                     formData.append('category_id',category_id);
                     formData.append('question_users',  JSON.stringify(question_users));
@@ -287,6 +317,10 @@
                                 $( "#main_page_title" ).prop( "disabled", true );
                                 $( "#date" ).prop( "disabled", true );
                                 $( "#to_date" ).prop( "disabled", true );
+                                $( "#option_1_percent" ).prop( "disabled", true );
+                                $( "#option_2_percent" ).prop( "disabled", true );
+                                $( "#option_3_percent" ).prop( "disabled", true );
+                                $( "#option_4_percent" ).prop( "disabled", true );
                                 $("#questions_users_store").text('');
 
                                 $('#LocationsCategories').show();

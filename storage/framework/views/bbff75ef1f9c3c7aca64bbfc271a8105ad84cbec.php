@@ -1,0 +1,2 @@
+<a href="<?php echo e(route('admin.users.surveys', $id)); ?>" class="btn btn-success"><i class="fa fa-eye"></i></a>
+<?php /**PATH E:\emad\survey\resources\views/admin/users/btn/surveys.blade.php ENDPATH**/ ?>

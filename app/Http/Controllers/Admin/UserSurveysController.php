@@ -38,7 +38,8 @@ class UserSurveysController extends Controller
 
     public function userCreate()
     {
-        return view('admin.users.create');
+        $question_options =Setting::first()->toArray();
+        return view('admin.users.create', compact('question_options' ));
     }
 
 
@@ -52,7 +53,8 @@ class UserSurveysController extends Controller
     public function userEdit($id)
     {
         $model = User::findOrFail($id);
-        return view('admin.users.edit', compact('model'));
+        $question_options =Setting::first()->toArray();
+        return view('admin.users.edit', compact('model','question_options'));
     }
 
     public function userUpdate(Request $request, $id)
@@ -117,7 +119,7 @@ class UserSurveysController extends Controller
 //                            dd($page_question);
 //                        }
 //                    }
-//                    
+//
 //                }
 //            }
 
@@ -145,9 +147,9 @@ class UserSurveysController extends Controller
     }
 
 
-    public function userDelete($id)
+    public function reportDelete($id)
     {
-        $delete = User::where('id', $id)->delete();
+        $delete = UsersSurveys::where('id', $id)->delete();
 
         // check data deleted or not
         if ($delete == 1) {

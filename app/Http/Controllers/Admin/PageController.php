@@ -33,7 +33,8 @@ class PageController extends Controller
 
     public function pageCreate()
     {
-        return view('admin.pages.create');
+        $question_options =Setting::first()->toArray();
+        return view('admin.pages.create', compact('question_options' ));
     }
 
     public function pageStore(Request $request)
@@ -45,7 +46,7 @@ class PageController extends Controller
 
     public function getUsersByLocation(Request $request)
     {
-        $users = User::where("location_id", $request->location_id)->where("status", 'active')->get();
+        $users = User::where("location_id", $request->location_id)->where("status", 'active')->where('user_type', 'worker')->get();
         $response = [
             'status' => 200,
             'message' => "All Users",
@@ -223,12 +224,13 @@ class PageController extends Controller
     public function pageEdit($id)
     {
         $model = Page::findOrFail($id);
+        $question_options =Setting::first()->toArray();
 
         $page_question = PageQuestions::where('page_id', $model->id)->with('category')->with('location')->with(['users' => function ($query) {
             $query->with('user');
         }])->get()->toArray();
 //      dd($page_question);
-        return view('admin.pages.edit', compact('model', 'page_question'));
+        return view('admin.pages.edit', compact('model', 'page_question','question_options'));
     }
 
     public function pageShow($id)
@@ -268,6 +270,10 @@ class PageController extends Controller
             $page_copy->name = $page->name;
             $page_copy->from_date = $page->from_date;
             $page_copy->to_date = $page->to_date;
+            $page_copy->option_1_percent =$page->option_1_percent ?? 0;
+            $page_copy->option_2_percent =$page->option_2_percent ?? 0;
+            $page_copy->option_3_percent = $page->option_3_percent ?? 0;
+            $page_copy->option_4_percent = $page->option_4_percent ?? 0;
             $page_copy->save();
             if ($page_copy) {
 

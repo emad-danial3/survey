@@ -20,7 +20,9 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('categor')[1] }}">
-            <li class=""><a href="{{ url('admin/categories') }}"><i class="fa fa-align-justify"></i>{{ trans('admin.categories') }}</a></li>
+            <li class=""><a href="{{ url('admin/categories') }}">
+
+                    <i class="fa fa-globe"></i>{{ trans('admin.categories') }}</a></li>
             <li class=""><a href="{{ url(route('admin.categories.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
@@ -34,7 +36,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('question')[1] }}">
-            <li class=""><a href="{{ url('admin/questions') }}"><i class="fa fa-bars"></i>{{ trans('admin.questions') }}</a></li>
+            <li class=""><a href="{{ url('admin/questions') }}"><i class="fa fa-globe"></i>{{ trans('admin.questions') }}</a></li>
             <li class=""><a href="{{ url(route('admin.questions.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
@@ -45,7 +47,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('posts')[1] }}">
-            <li class=""><a href="{{ url('admin/pages') }}"><i class="fa fa-paper-plane"></i>{{ trans('admin.pages') }}</a></li>
+            <li class=""><a href="{{ url('admin/pages') }}"><i class="fa fa-globe"></i>{{ trans('admin.pages') }}</a></li>
             <li class=""><a href="{{ url(route('admin.pages.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
@@ -57,7 +59,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('user')[1] }}">
-            <li class=""><a href="{{ url('admin/users') }}"><i class="fa fa-users"></i>{{ trans('admin.users') }}</a></li>
+            <li class=""><a href="{{ url('admin/users') }}"><i class="fa fa-globe"></i>{{ trans('admin.users') }}</a></li>
             <li class=""><a href="{{ url(route('admin.users.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
@@ -69,7 +71,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('location')[1] }}">
-            <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-list"></i>{{ trans('admin.departments') }}</a></li>
+            <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-globe"></i>{{ trans('admin.departments') }}</a></li>
             <li class=""><a href="{{ url(route('admin.departments.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
@@ -80,7 +82,7 @@
             <span class="pull-right-container"></span>
         </a>
         <ul class="treeview-menu" style="{{ active_menu('report')[1] }}">
-            <li class=""><a href="{{ url('admin/reports') }}"><i class="fa fa-bar-chart"></i>{{ trans('admin.reports') }}</a></li>
+            <li class=""><a href="{{ url('admin/reports') }}"><i class="fa fa-globe"></i>{{ trans('admin.reports') }}</a></li>
         </ul>
     </li>
 

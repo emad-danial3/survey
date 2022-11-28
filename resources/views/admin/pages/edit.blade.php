@@ -37,6 +37,22 @@
                             <label for="to_date">{{trans('admin.to_date')}}</label>
                             {!! Form::date('to_date', $model->to_date , ['class' => 'form-control', 'required' => 'required','id'=>'to_date']) !!}
                         </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_1_percent">Option {{$question_options['option_1']}}  percent (%)</label>
+                            {!! Form::number('option_1_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_1_percent']) !!}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_2_percent">Option {{$question_options['option_2']}} percent (%)</label>
+                            {!! Form::number('option_2_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_2_percent']) !!}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_3_percent"> Option {{$question_options['option_3']}} percent (%)</label>
+                            {!! Form::number('option_3_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_3_percent']) !!}
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_4_percent"> Option {{$question_options['option_4']}} percent (%)</label>
+                            {!! Form::number('option_4_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_4_percent']) !!}
+                        </div>
 
 
                         <h4>
