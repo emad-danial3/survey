@@ -50,8 +50,20 @@ class UserController extends Controller
         $surveys = Page::all();
         $lastSurveyId='';
         $lastSurveyId = Page::where('status', '1')->first()->id;
-        $usersMakeSurvey=UsersSurveys::where('survey_id',$lastSurveyId)->where('location_id',$user->location_id)->get();
-dd($usersMakeSurvey);
+        $usersMakeSurvey=UsersSurveys::where('survey_id',$lastSurveyId)->where('location_id',$user->location_id)
+            ->get();
+        $usersMakeSurveyQuestions = DB::table('category_questions')
+            ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
+            ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
+            ->where('users_surveys.survey_id', $lastSurveyId)
+            ->where('users_surveys.location_id', $user->location_id)
+            ->where('users_surveys_details.user_id', $id)
+            ->groupBy('users_surveys_details.question_id')
+            ->select('category_questions.title')
+            ->get();
+
+
+        dd($usersMakeSurveyQuestions);
 
 
         $page_question = PageQuestions::where('page_id', $lastSurveyId)->where('location_id', $user->location_id)->with('category')
