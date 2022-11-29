@@ -84,7 +84,7 @@ class UserController extends Controller
             $sum_option_4_count +=$usersMakeSurveyQuestions[$i]->option_4_count;
             $total_sum_percentage+=$usersMakeSurveyQuestions[$i]->total_percentage;
         }
-        $final_total_sum_percentage=($total_sum_percentage/count($usersMakeSurveyQuestions));
+        $final_total_sum_percentage=count($usersMakeSurveyQuestions) > 0 ?($total_sum_percentage/count($usersMakeSurveyQuestions)):0;
         $final_total_sum_percentage=round($final_total_sum_percentage, 2);
 
 //        dd($usersMakeSurveyQuestions->toArray());
