@@ -10,7 +10,7 @@ class Locations extends Model
     public $table="locations";
     public $timestamps = true;
     protected $fillable = [
-        'id','name','status'
+        'id','name','status','location_type','area'
     ];
     public function location_pages()
     {

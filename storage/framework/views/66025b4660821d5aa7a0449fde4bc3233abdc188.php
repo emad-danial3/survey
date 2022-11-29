@@ -144,7 +144,7 @@
                                           <div class=" col-md-6">
 
                                               <?php $users = app('App\User'); ?>
-                                              <?php if($users->where('id','>', 0)->where('status', 'active')->count() != 0): ?>
+                                              <?php if($users->where('id','>', 0)->where('status', 'active')->where('user_type', 'worker')->count() != 0): ?>
                                                   <div class="form-group col-md-12">
                                                       <label for="user_id">Chose <?php echo e(trans('admin.user_id')); ?> </label>
                                                      <div class="row" style="display: flex">

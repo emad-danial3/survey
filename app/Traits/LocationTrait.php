@@ -14,6 +14,8 @@ trait LocationTrait
         $location = new Locations();
         $location->name = $request['name'];
         $location->status = $request['status'];
+        $location->location_type = $request['location_type'];
+        $location->area = $request['area'];
 
         $location->save();
 
@@ -26,15 +28,17 @@ trait LocationTrait
     public function editLocation($request)
     {
         DB::beginTransaction();
-        $category = Locations::findOrFail($request['location_id']);
+        $location = Locations::findOrFail($request['location_id']);
 
-        $category->status =$request['status'];
-        $category->name =$request['name'];
+        $location->status =$request['status'];
+        $location->name =$request['name'];
+        $location->location_type =$request['location_type'];
+        $location->area =$request['area'];
 
-        $category->save();
+        $location->save();
 
         DB::commit();
-        $category = Locations::find($category->id);
-        return $category;
+        $location = Locations::find($location->id);
+        return $location;
     }
 }

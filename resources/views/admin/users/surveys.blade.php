@@ -50,42 +50,82 @@
                                     </div>
 <br>
 <br>
-
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            Employee Name : {{$user->name}}
+                                        </div>
+                                        <div class="col-sm-6">
+                                           Location Name : {{$location->name}}
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="table-responsive">
-                                    <table class="table table-bordered table-striped">
+                                    <table class="table table-bordered table-striped arabicStyle">
                                             <thead>
                                             <tr role="row">
-                                                <th>#</th>
-                                                <th>{{trans('admin.title')}}</th>
 
-                                                <th>{{trans('admin.status')}}</th>
+{{--                                                <th>{{trans('admin.title')}}</th>--}}
 
-                                                <th>{{trans('datatable.show')}}</th>
-
+{{--                                                <th>{{trans('admin.status')}}</th>--}}
+                                                <th  class="arabicStyle"> م </th>
+                                                <th  class="arabicStyle"> سؤال استطلاع الراي </th>
+                                                <th  class="arabicStyle" colspan="4">
+                                                    <table class="table " style="margin-bottom: 0px">
+                                                        <tr>
+                                                            <th colspan="4" class="text-center"> عدد الذين قاموا بالاستطلاع</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th  class="arabicStyle">جيد</th>
+                                                            <td>متوسط</td>
+                                                            <td>ضعيف</td>
+                                                            <td>N/A</td>
+                                                        </tr>
+                                                    </table>
+                                                </th>
+                                                <th class="arabicStyle">TOTAL</th>
+                                                <th class="arabicStyle">جيد</th>
+                                                <th class="arabicStyle">متوسط</th>
+                                                <th class="arabicStyle">ضعيف</th>
+                                                <th class="arabicStyle">N/A</th>
+                                                <th class="arabicStyle">SUM</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody >
 
-{{--                                            @foreach($surveys as $record)--}}
-{{--                                                <tr id="removable{{$record->id}}">--}}
-{{--                                                    <td>{{$loop->iteration}}</td>--}}
-{{--                                                    <td>{{$record->title}}</td>--}}
-{{--                                                    <td>{{$record->status}}</td>--}}
+                                            @foreach($usersMakeSurveyQuestions as $record)
+                                                <tr >
+                                                    <td>{{$loop->iteration}}</td>
+                                                    <td class="text-right"> {!! $record->title !!} </td>
+                                                    <td class="text-center"> {{$record->option_1_count}} </td>
+                                                    <td class="text-center"> {{$record->option_2_count}} </td>
+                                                    <td class="text-center"> {{$record->option_3_count}} </td>
+                                                    <td class="text-center"> {{$record->option_4_count}} </td>
+                                                    <td class="text-center"> {{$record->total_count}} </td>
+                                                    <td class="text-center"> {{$record->total_option_1_percent}}   % </td>
+                                                    <td class="text-center"> {{$record->total_option_2_percent}}   % </td>
+                                                    <td class="text-center"> {{$record->total_option_3_percent}}   % </td>
+                                                    <td class="text-center"> {{$record->total_option_4_percent}}   % </td>
+                                                    <td class="text-center"> {{$record->total_percentage}}  % </td>
 
 
-{{--                                                    <td class=" text-center">--}}
-{{--                                                        <a class="btn btn-primary"--}}
-{{--                                                           href="{{ route('admin.posts.show',$record->id) }}"--}}
-{{--                                                           role="button"><i class="fa fa-eye"></i></a>--}}
-{{--                                                    </td>--}}
+                                                </tr>
+                                            @endforeach
 
-
-{{--                                                </tr>--}}
-{{--                                            @endforeach--}}
+                                            <tr >
+                                                <th colspan="2" class="text-center" style="background-color: #ffdf02">الاجمالي</th>
+                                                <th class="text-center"> {{$sum_option_1_count}} </th>
+                                                <th class="text-center"> {{$sum_option_2_count}} </th>
+                                                <th class="text-center"> {{$sum_option_3_count}} </th>
+                                                <th class="text-center"> {{$sum_option_4_count}} </th>
+                                                <th class="text-center">  </th>
+                                                <th colspan="4" class="text-center" style="background-color: #bdd8fc">متوسط تقييم الموظف</th>
+                                                <th class="text-center" style="color: #d9252b;background-color: #bdd8fc"> {{$final_total_sum_percentage}} % </th>
+                                            </tr>
 
                                             </tbody>
                                         </table>
@@ -112,7 +152,10 @@
             $('.message-flash .alert').not('.alert-important').delay(2000).fadeOut(2000);
             $(document).ready(function () {
                 $('.select5').select2();
+                $('.arabicStyle').css("direction", "rtl");
+                $('.arabicStyle').css("text-align", "center");
             });
+
         </script>
     @endpush
 

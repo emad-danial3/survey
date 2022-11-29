@@ -25,8 +25,13 @@ class LocationDatatable extends DataTable
             ->eloquent($query)
             ->editColumn('created_at', function ($contact){
                 return date('d/m/Y H:i:s', strtotime($contact->created_at) );
-            })
-            ->addColumn('action', 'admin.locations.btn.action')
+            })->editColumn('status', function ($contact){
+                return $contact->status == '1'?"Active":"Not Active";
+            })->editColumn('location_type', function ($contact){
+                return $contact->location_type == 'general'?"عام":"خاص اساسي";
+            })->editColumn('area', function ($contact){
+                return $contact->area == 'opera'?"مبني الاوبرا":"خارج مبني الابرا ";
+            })->addColumn('action', 'admin.locations.btn.action')
             ->rawColumns([
                 'action',
                 'nameLocation',
@@ -83,6 +88,14 @@ class LocationDatatable extends DataTable
                 'name' => 'status',
                 'data' => 'status',
                 'title' => trans('datatable.status'),
+            ], [
+                'name' => 'location_type',
+                'data' => 'location_type',
+                'title' => trans('Location Type'),
+            ], [
+                'name' => 'area',
+                'data' => 'area',
+                'title' => trans('Area'),
             ], [
                 'name' => 'action',
                 'data' => 'action',
