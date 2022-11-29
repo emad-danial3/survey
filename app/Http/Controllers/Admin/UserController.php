@@ -50,8 +50,6 @@ class UserController extends Controller
         $surveys = Page::all();
         $lastSurveyId='';
         $lastSurveyId = Page::where('status', '1')->first()->id;
-        $usersMakeSurvey=UsersSurveys::where('survey_id',$lastSurveyId)->where('location_id',$user->location_id)
-            ->get();
         $usersMakeSurveyQuestions = DB::table('category_questions')
             ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
             ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
@@ -59,19 +57,18 @@ class UserController extends Controller
             ->where('users_surveys.location_id', $user->location_id)
             ->where('users_surveys_details.user_id', $id)
             ->groupBy('users_surveys_details.question_id')
-            ->select('category_questions.title')
+            ->select('category_questions.id','category_questions.title',DB::raw("count(users_surveys_details.id) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
             ->get();
 
 
-        dd($usersMakeSurveyQuestions);
+        for($i = 1;$i<=(count($usersMakeSurveyQuestions);$i++)
+        {
+            $seats = $seats."b";
+        }
 
 
-        $page_question = PageQuestions::where('page_id', $lastSurveyId)->where('location_id', $user->location_id)->with('category')
-            ->with(['category' => function ($query) {
-                $query->with('questions');
-            }])
-            ->with('location')->get()->toArray();
-//dd($page_question);
+        dd($usersMakeSurveyQuestions->toArray());
+
         return view('admin.users.surveys',compact('user','surveys','lastSurveyId'));
     }
     public function getUserStatistic(Request $request)

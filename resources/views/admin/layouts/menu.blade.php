@@ -65,12 +65,22 @@
     </li>
 
 
+    <li class="treeview {{ active_menu('locations')[0] }}">
+        <a href="#">
+            <i class="fa fa-globe"></i> <span>{{ trans('admin.locations') }}</span>
+            <span class="pull-right-container"></span>
+        </a>
+        <ul class="treeview-menu" style="{{ active_menu('location')[1] }}">
+            <li class=""><a href="{{ url('admin/locations') }}"><i class="fa fa-globe"></i>{{ trans('admin.locations') }}</a></li>
+            <li class=""><a href="{{ url(route('admin.locations.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
+        </ul>
+    </li>
     <li class="treeview {{ active_menu('departments')[0] }}">
         <a href="#">
             <i class="fa fa-adn"></i> <span>{{ trans('admin.departments') }}</span>
             <span class="pull-right-container"></span>
         </a>
-        <ul class="treeview-menu" style="{{ active_menu('location')[1] }}">
+        <ul class="treeview-menu" style="{{ active_menu('department')[1] }}">
             <li class=""><a href="{{ url('admin/departments') }}"><i class="fa fa-globe"></i>{{ trans('admin.departments') }}</a></li>
             <li class=""><a href="{{ url(route('admin.departments.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
