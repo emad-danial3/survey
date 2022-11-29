@@ -80,7 +80,7 @@
             <i class="fa fa-adn"></i> <span><?php echo e(trans('admin.departments')); ?></span>
             <span class="pull-right-container"></span>
         </a>
-        <ul class="treeview-menu" style="<?php echo e(active_menu('location')[1]); ?>">
+        <ul class="treeview-menu" style="<?php echo e(active_menu('department')[1]); ?>">
             <li class=""><a href="<?php echo e(url('admin/departments')); ?>"><i class="fa fa-globe"></i><?php echo e(trans('admin.departments')); ?></a></li>
             <li class=""><a href="<?php echo e(url(route('admin.departments.create'))); ?>"><i class="fa fa-plus"></i><?php echo e(trans('admin.add')); ?></a></li>
         </ul>
