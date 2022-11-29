@@ -50,6 +50,7 @@ class UserController extends Controller
         $surveys = Page::all();
         $lastSurveyId='';
         $lastSurveyId = Page::where('status', '1')->first()->id;
+        $question_options =Setting::first()->toArray();
         $usersMakeSurveyQuestions = DB::table('category_questions')
             ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
             ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
@@ -61,7 +62,7 @@ class UserController extends Controller
             ->get();
 
 
-        for($i = 1;$i<=(count($usersMakeSurveyQuestions);$i++)
+        for($i = 1;$i <count($usersMakeSurveyQuestions);$i++)
         {
             $seats = $seats."b";
         }
