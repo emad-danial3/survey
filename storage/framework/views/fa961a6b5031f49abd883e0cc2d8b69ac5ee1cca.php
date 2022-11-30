@@ -49,7 +49,7 @@
                             <select class="form-control select2" id="location_id" required
                                     name="location_id">
                                 <option value=""><?php echo e(trans('admin.location_id')); ?></option>
-                                <?php $__currentLoopData = $locations->where('id','>', 0)->where('status', '1')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $locations->where('id','>', 0)->where('status', '1')->where('location_type', 'special')->get(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <option
                                         value="<?php echo e($location->id); ?>">
                                         <?php echo e($location->name); ?>

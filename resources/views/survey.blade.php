@@ -72,7 +72,7 @@
                                     <div class="col-md-2">
                                     </div>
                                     <div class="col-md-8 category_name">
-                                        <h3 class="box-title">{{$category['category']['name']}}</h3>
+                                        <h3 class="box-title">{{$category['category']['name']}} - {{$category['location']['name']}}</h3>
                                     </div>
                                     <div class="col-md-2">
                                     </div>

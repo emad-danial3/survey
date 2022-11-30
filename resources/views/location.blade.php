@@ -48,7 +48,7 @@
                             <select class="form-control select2" id="location_id" required
                                     name="location_id">
                                 <option value="">{{trans('admin.location_id')}}</option>
-                                @foreach($locations->where('id','>', 0)->where('status', '1')->get() as $location)
+                                @foreach($locations->where('id','>', 0)->where('status', '1')->where('location_type', 'special')->get() as $location)
                                     <option
                                         value="{{$location->id}}">
                                         {{$location->name}}

@@ -11,6 +11,7 @@ use App\Models\Posts;
 use App\Models\UsersSurveys;
 use App\Models\PageQuestions;
 use App\Models\Setting;
+use App\Models\Locations;
 use App\Traits\UserTrait;
 use App\Models\UsersSurveysDetails;
 use App\User;
@@ -94,8 +95,17 @@ class UserSurveysController extends Controller
     public function reportShow($id)
     {
         $model = UsersSurveys::where('id', $id)->with('location')->with('survey')->first();
+        $location = Locations::where('id', $model->location_id)->first();
         if ($model) {
-            $page_question = PageQuestions::where('page_id', $model->survey_id)->where('location_id', $model->location_id)->with('category')
+
+
+            $page_question_special = PageQuestions::where('page_id',  $model->survey_id)
+                ->whereIn('location_id', Locations::select(['id'])->where([
+                    ['id', '=', $model->location_id],
+                    ['location_type', '=', 'special'],
+                    ['area', '=', $location->area],
+                ]))
+                ->with('category')
                 ->with(['category' => function ($query) {
                     $query->with('questions');
                 }])
@@ -103,9 +113,35 @@ class UserSurveysController extends Controller
                 ->with(['users' => function ($query) {
                     $query->with('user');
                 }])->get()->toArray();
+
+            $page_question_general = PageQuestions::where('page_id', $model->survey_id)
+                ->whereIn('location_id', Locations::select(['id'])->where([
+                    ['id', '!=', $model->location_id],
+                    ['location_type', '=', 'general'],
+                    ['area', '=', $location->area],
+                ]))
+                ->with('category')
+                ->with(['category' => function ($query) {
+                    $query->with('questions');
+                }])
+                ->with('location')
+                ->with(['users' => function ($query) {
+                    $query->with('user');
+                }])->get()->toArray();
+
+            $page_question =   array_merge($page_question_special,$page_question_general);
+
+//            $page_question = PageQuestions::where('page_id', $model->survey_id)->where('location_id', $model->location_id)->with('category')
+//                ->with(['category' => function ($query) {
+//                    $query->with('questions');
+//                }])
+//                ->with('location')
+//                ->with(['users' => function ($query) {
+//                    $query->with('user');
+//                }])->get()->toArray();
             $question_options = Setting::first()->toArray();
             $UsersSurveysDetails= UsersSurveysDetails::where('users_surveys_id', $model->id)->get();
-            $UsersDetails= $UsersSurveysDetails->toArray();
+//            $UsersDetails= $UsersSurveysDetails->toArray();
 //dd($UsersDetails);
 //            foreach($page_question as $key=>$category){
 //                foreach($category['category']['questions'] as $ind=>$question){
