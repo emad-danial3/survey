@@ -75,6 +75,8 @@ class GeneralController extends Controller
         $model = Page::where('status', '1')->first();
             if ($model) {
 
+
+
   $page_question_special = PageQuestions::where('page_id', $model->id)
                     ->whereIn('location_id', Locations::select(['id'])->where([
                         ['id', '=', $location_id],
