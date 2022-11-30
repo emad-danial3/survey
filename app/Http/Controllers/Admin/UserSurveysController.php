@@ -166,6 +166,7 @@ class UserSurveysController extends Controller
 
 
 
+
 //dd($page_question);
 //            $UsersDetails= $UsersSurveysDetails->toArray();
 //            if (in_array(5,$UsersSurveysDetails)){
@@ -183,6 +184,7 @@ class UserSurveysController extends Controller
     }
 
 
+
     public function reportDelete($id)
     {
         $delete = UsersSurveys::where('id', $id)->delete();
@@ -195,6 +197,7 @@ class UserSurveysController extends Controller
             $success = true;
             $message = trans('company.delete_error');
         }
+
 
         //  Return response
         return response()->json([

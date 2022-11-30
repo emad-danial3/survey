@@ -66,6 +66,7 @@ class GeneralController extends Controller
 
     public function getLocationSurvey(Request $request)
     {
+
         $EMAIL=$request->input('email');
         $LAST_NAME=$request->input('LAST_NAME');
         $EMPLOYEE_ID=$request->input('EMPLOYEE_ID');
