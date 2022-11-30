@@ -62,6 +62,10 @@
     border-left: 0px;
     border-right: 0px;
 }
+.arabicStyle{
+    direction:rtl;
+    text-align: center;
+}
 
 
 

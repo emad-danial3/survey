@@ -59,7 +59,6 @@ class UserController extends Controller
             ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
             ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
             ->where('users_surveys.survey_id', $lastSurveyId)
-            ->where('users_surveys.location_id', $user->location_id)
             ->where('users_surveys_details.user_id', $id)
             ->groupBy('users_surveys_details.question_id')
             ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(users_surveys_details.id) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
@@ -86,7 +85,7 @@ class UserController extends Controller
         }
         $final_total_sum_percentage=count($usersMakeSurveyQuestions) > 0 ?($total_sum_percentage/count($usersMakeSurveyQuestions)):0;
         $final_total_sum_percentage=round($final_total_sum_percentage, 2);
-
+//            ->where('users_surveys.location_id', $user->location_id)
 //        dd($usersMakeSurveyQuestions->toArray());
 
         return view('admin.users.surveys',compact('user','location','surveys','lastSurveyId','usersMakeSurveyQuestions','question_options','sum_option_1_count','sum_option_2_count','sum_option_3_count','sum_option_4_count','final_total_sum_percentage'));
@@ -104,7 +103,7 @@ class UserController extends Controller
             ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
             ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
             ->where('users_surveys.survey_id', $lastSurveyId)
-            ->where('users_surveys.location_id', $user->location_id)
+
             ->where('users_surveys_details.user_id', $request->input('user_id'))
             ->groupBy('users_surveys_details.question_id')
             ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(users_surveys_details.id) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
@@ -131,7 +130,7 @@ class UserController extends Controller
         }
         $final_total_sum_percentage=count($usersMakeSurveyQuestions) > 0 ?($total_sum_percentage/count($usersMakeSurveyQuestions)):0;
         $final_total_sum_percentage=round($final_total_sum_percentage, 2);
-
+//            ->where('users_surveys.location_id', $user->location_id)
 //        dd($usersMakeSurveyQuestions->toArray());
 
         return view('admin.users.surveys',compact('user','location','surveys','lastSurveyId','usersMakeSurveyQuestions','question_options','sum_option_1_count','sum_option_2_count','sum_option_3_count','sum_option_4_count','final_total_sum_percentage'));

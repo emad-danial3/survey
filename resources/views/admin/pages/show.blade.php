@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="col-md-8" style="text-align: center;border-radius: 7px;background-color: rgb(123, 55, 10); color: rgba(255, 255, 255, 1);padding: 12px 24px;">
                                        @if($category['category'])
-                                        <h3 class="box-title">{{$category['category']['name']}}</h3>
+                                            <h3 class="box-title">{{$category['category']['name']}} - {{$category['location']['name']}}</h3>
                                         @endif
                                     </div>
                                     <div class="col-md-2">

@@ -152,8 +152,6 @@
             $('.message-flash .alert').not('.alert-important').delay(2000).fadeOut(2000);
             $(document).ready(function () {
                 $('.select5').select2();
-                $('.arabicStyle').css("direction", "rtl");
-                $('.arabicStyle').css("text-align", "center");
             });
 
         </script>

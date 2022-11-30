@@ -172,6 +172,12 @@
 
 
 
+
+
+
+
+
+
                         <div class="form-group">
                             <a href="{{ url('admin/pages') }}" class="btn btn-primary">Finish & {{trans('admin.submit')}} </a>
 {{--                            <button class="btn btn-primary" type="submit">Finish & {{trans('admin.submit')}} </button>--}}

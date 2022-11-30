@@ -98,7 +98,6 @@ class UserSurveysController extends Controller
         $location = Locations::where('id', $model->location_id)->first();
         if ($model) {
 
-
             $page_question_special = PageQuestions::where('page_id',  $model->survey_id)
                 ->whereIn('location_id', Locations::select(['id'])->where([
                     ['id', '=', $model->location_id],
@@ -131,49 +130,11 @@ class UserSurveysController extends Controller
 
             $page_question =   array_merge($page_question_special,$page_question_general);
 
-//            $page_question = PageQuestions::where('page_id', $model->survey_id)->where('location_id', $model->location_id)->with('category')
-//                ->with(['category' => function ($query) {
-//                    $query->with('questions');
-//                }])
-//                ->with('location')
-//                ->with(['users' => function ($query) {
-//                    $query->with('user');
-//                }])->get()->toArray();
             $question_options = Setting::first()->toArray();
             $UsersSurveysDetails= UsersSurveysDetails::where('users_surveys_id', $model->id)->get();
 //            $UsersDetails= $UsersSurveysDetails->toArray();
 //dd($UsersDetails);
-//            foreach($page_question as $key=>$category){
-//                foreach($category['category']['questions'] as $ind=>$question){
-//           Survey Create         foreach($category['users'] as $induser=>$user){
-//                        foreach($UsersDetails as $inser=>$userans){
-//                           if($question['id'] == $userans['question_id'] && $user['user_id'] == $userans['user_id'] ){
-//                              $ABSWER=$userans['chose_option'];
-//                           }
-//                            $page_question[$key]['category']['questions'][$ind]['EMAD']='aaAA';
-//
-//                            dd($page_question);
-//                        }
-//                    }
-//
-//                }
-//            }
 
-//            dd($page_question);
-//
-//            die();
-
-
-
-
-
-//dd($page_question);
-//            $UsersDetails= $UsersSurveysDetails->toArray();
-//            if (in_array(5,$UsersSurveysDetails)){
-//                dd("dddd");
-//            }else{
-//                dd("asdasda");
-//            }
             return view('admin.reports.show', compact('model', 'page_question', 'question_options','UsersSurveysDetails'));
         } else {
             return view('welcome', [
