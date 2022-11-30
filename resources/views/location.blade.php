@@ -37,6 +37,9 @@
                     <input type="hidden"  name="EMPLOYEE_ID" id="EMPLOYEE_ID" value="{{$user['data']['EMPLOYEE_ID']}}">
                     <input type="hidden"  name="email" id="email" value="{{$email}}">
                 @endif
+
+
+
                 <div class="form-group">
                     @inject('locations', 'App\Models\Locations')
                     @if($locations->where('id','>', 0)->where('status', '1')->count() != 0)
