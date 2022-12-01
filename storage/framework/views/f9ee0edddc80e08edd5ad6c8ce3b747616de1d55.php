@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('page_title'); ?>
     <?php echo e(trans('admin.pageShow')); ?>
 
@@ -47,7 +46,7 @@
                                         <div class="col-md-2">
                                         </div>
                                         <div class="col-md-8 category_name">
-                                            <h3 class="box-title"><?php echo e($category['category']['name']); ?></h3>
+                                            <h3 class="box-title"><?php echo e($category['category']['name']); ?> - <?php echo e($category['location']['name']); ?></h3>
                                         </div>
                                         <div class="col-md-2">
                                         </div>

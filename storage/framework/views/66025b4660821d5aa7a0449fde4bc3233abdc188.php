@@ -1,4 +1,3 @@
-
 <?php $model = app('App\Models\Page'); ?>
 <?php $__env->startSection('page_title'); ?>
     <?php echo e(trans('admin.pageCreate')); ?>
@@ -181,6 +180,12 @@
                             </div>
                             <br>
                         </div>
+
+
+
+
+
+
 
 
 

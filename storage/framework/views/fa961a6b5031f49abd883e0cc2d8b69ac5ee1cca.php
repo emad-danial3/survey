@@ -38,6 +38,9 @@
                     <input type="hidden"  name="EMPLOYEE_ID" id="EMPLOYEE_ID" value="<?php echo e($user['data']['EMPLOYEE_ID']); ?>">
                     <input type="hidden"  name="email" id="email" value="<?php echo e($email); ?>">
                 <?php endif; ?>
+
+
+
                 <div class="form-group">
                     <?php $locations = app('App\Models\Locations'); ?>
                     <?php if($locations->where('id','>', 0)->where('status', '1')->count() != 0): ?>
