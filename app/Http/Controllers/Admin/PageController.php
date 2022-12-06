@@ -362,4 +362,32 @@ class PageController extends Controller
             'message' => $message,
         ]);
     }
+
+
+    public function pageDelete($id)
+    {
+        $delete = Page::where('id', $id)->delete();
+
+        // check data deleted or not
+        if ($delete == 1) {
+
+            PageQuestions::where('page_id', $id)->delete();
+            PageQuestionUsers::where('page_detail_id',$id)->delete();
+
+            $success = true;
+            $message = trans('company.delete_success');
+        } else {
+            $success = true;
+            $message = trans('company.delete_error');
+        }
+
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+    }
+
+
+
 }

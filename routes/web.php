@@ -120,8 +120,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('/page/disabled/{id}', 'PageController@pageDisabled')->name('admin.pages.edit');
         Route::post('/page/duplicate/{id}', 'PageController@pageDuplicate')->name('admin.pages.duplicate');
         Route::post('/page/activated/{id}', 'PageController@pageActivated')->name('admin.pages.edit');
-
-
+        Route::post('/page/delete/{id}', 'PageController@pageDelete')->name('admin.pages.delete');
+        
+       
         Route::get('/settings', 'SettingController@index')->name('settings');
         Route::post('/settings/update', 'SettingController@update')->name('settings.update');
     });
