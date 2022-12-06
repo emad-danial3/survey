@@ -55,6 +55,7 @@
                     success: function (results) {
                         if (results.success === true) {
                             $('#datatable_page').DataTable().ajax.reload();
+                            
                             swal("{{trans('datatable.Done!')}}", results.message, "success");
                         } else {
                             swal("{{trans('datatable.Error!')}}", results.message, "error");
