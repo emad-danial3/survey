@@ -86,14 +86,14 @@
         </ul>
     </li>
 
-    <li class="treeview {{ active_menu('reports')[0] }}">
-        <a href="#">
-            <i class="fa fa-bar-chart"></i> <span>{{ trans('admin.reports') }}</span>
-            <span class="pull-right-container"></span>
-        </a>
-        <ul class="treeview-menu" style="{{ active_menu('report')[1] }}">
-            <li class=""><a href="{{ url('admin/reports') }}"><i class="fa fa-globe"></i>{{ trans('admin.reports') }}</a></li>
-        </ul>
-    </li>
+{{--    <li class="treeview {{ active_menu('reports')[0] }}">--}}
+{{--        <a href="#">--}}
+{{--            <i class="fa fa-bar-chart"></i> <span>{{ trans('admin.reports') }}</span>--}}
+{{--            <span class="pull-right-container"></span>--}}
+{{--        </a>--}}
+{{--        <ul class="treeview-menu" style="{{ active_menu('report')[1] }}">--}}
+{{--            <li class=""><a href="{{ url('admin/reports') }}"><i class="fa fa-globe"></i>{{ trans('admin.reports') }}</a></li>--}}
+{{--        </ul>--}}
+{{--    </li>--}}
 
 </ul>
