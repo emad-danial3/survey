@@ -8,12 +8,12 @@ use App\Models\Page;
 use App\DataTables\Admin\PageDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\pageCreate;
-
 use App\Models\PageQuestions;
 use App\Models\PageQuestionUsers;
 use App\Models\Setting;
 use App\Traits\PageTrait;
 use App\User;
+use DB;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -126,6 +126,26 @@ class PageController extends Controller
     {
 
         $delete = PageQuestionUsers::where('page_detail_id', $request->id)->where('user_id', $request->user_id)->delete();
+        // check data deleted or not
+        if ($delete == 1) {
+            $success = true;
+            $message = trans('company.delete_success');
+        } else {
+            $success = true;
+            $message = trans('company.delete_error');
+        }
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+    }
+
+    public function deleteCategoryRow(Request $request)
+    {
+
+        $delete = PageQuestions::where('id', $request->id)->delete();
+                  PageQuestionUsers::where('page_detail_id', $request->id)->delete();
         // check data deleted or not
         if ($delete == 1) {
             $success = true;
@@ -367,12 +387,16 @@ class PageController extends Controller
     public function pageDelete($id)
     {
         $delete = Page::where('id', $id)->delete();
-
         // check data deleted or not
         if ($delete == 1) {
 
+            $raw_query = 'DELETE page_details_users
+                FROM page_details_users
+                INNER JOIN page_details ON page_details.`id` = page_details_users.`page_detail_id`
+                WHERE page_details.`page_id` = '.$id;
+            $nrd = DB::delete($raw_query);
+
             PageQuestions::where('page_id', $id)->delete();
-            PageQuestionUsers::where('page_detail_id',$id)->delete();
 
             $success = true;
             $message = trans('company.delete_success');
@@ -387,7 +411,4 @@ class PageController extends Controller
             'message' => $message,
         ]);
     }
-
-
-
 }

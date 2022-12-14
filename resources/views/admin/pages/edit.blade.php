@@ -65,6 +65,7 @@
                                 <th scope="col">Location</th>
                                 <th scope="col">Category</th>
                                 <th scope="col">Users</th>
+                                <th scope="col">Delete Row</th>
 
 
                             </tr>
@@ -99,6 +100,12 @@
                                                         @endforeach
                                                     @endif
                                         </td>
+                                        <td>
+                                            <button type="button" class="btn btn-danger"
+                                                    onclick="deleteConfirmationRow({{$question['id']}})">Delete
+                                            </button>
+
+                                        </td>
 
                                     </tr>
                                 @endforeach
@@ -118,7 +125,7 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                
+
 
                                 <div class="form-group col-md-12" id="questions_container_body">
                                     <div  id="">
@@ -803,5 +810,62 @@
                 })
             }
         }
+
+        function deleteConfirmationRow(id) {
+            let formData = new FormData();
+            formData.append('id', id);
+            let path = base_url + "/admin/deleteCategoryRow";
+            if (id > 0) {
+                swal({
+                    title: "{{trans('datatable.Delete?')}}",
+                    text: "{{trans('datatable.Please ensure and then confirm!')}}",
+                    type: "warning",
+                    showCancelButton: !0,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "{{trans('datatable.Yes, delete it!')}}",
+                    cancelButtonText: "{{trans('datatable.No, cancel!')}}",
+                    reverseButtons: !0
+                }).then(function (e) {
+
+                    if (e.value === true) {
+
+                        $.ajax({
+                            url: path,
+                            type: 'POST',
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            processData: false,
+                            success: function (results) {
+                                $('#exampleModal').modal('hide');
+                                if (results.success === true) {
+                                    swal("{{trans('datatable.Done!')}}", results.message, "success");
+                                    setTimeout(function () {
+                                        window.location.reload(1);
+                                    }, 2000);
+                                } else {
+                                    swal("{{trans('datatable.Error!')}}", results.message, "error");
+                                }
+                            },
+                            error: function (response) {
+                                console.log(response)
+                                alert('error');
+                            }
+                        });
+
+                    } else {
+                        e.dismiss;
+                    }
+
+                }, function (dismiss) {
+                    return false;
+                })
+            }
+        }
+
     </script>
 @endpush

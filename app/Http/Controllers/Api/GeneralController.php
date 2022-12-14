@@ -47,11 +47,11 @@ class GeneralController extends Controller
         $model = Page::where('status', '1')->first();
         $getUserServay=UsersSurveys::where('survey_id',$model->id)->where('EMAIL_ADDRESS',$email)->first();
         if(!$getUserServay){
-            if($user['status'] == 200){
+            if(isset($user['status'])&& $user['status']== 200){
                 return view('location', compact('model','user','email'));
             }else{
                 return view('welcome', [
-                    'errorMessageDuration' => $user['message'],
+                    'errorMessageDuration' => $user ?$user['message']:"error in server",
                     'model' => $model,
                 ]);
             }

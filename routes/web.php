@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::post('/saveUpdateUser', 'PageController@saveUpdateUser');
     Route::post('/addNewUser', 'PageController@addNewUser');
     Route::post('/deleteCategoryUser', 'PageController@deleteCategoryUser');
+    Route::post('/deleteCategoryRow', 'PageController@deleteCategoryRow');
     Route::post('/getUsersByLocation', 'PageController@getUsersByLocation');
     Route::group(['middleware' => ['auth', 'auto-check-permission']], function () { //
         Route::get('/', 'AdminController@dashboard')->name('admin.dashboard');
