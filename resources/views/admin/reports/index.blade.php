@@ -5,6 +5,7 @@
 @section('small_title')
     {{trans('admin.reports')}}
 @endsection
+@if(auth()->user()->id == 2)
 @section('content')
     <div class="box">
         <!-- /.box-header -->
@@ -13,7 +14,7 @@
             <div class="message-flash">
                 @include('flash::message')
             </div>
-           
+
 
             <div class="table-responsive">
                 {!! $dataTable->table(['class' => 'table table-bordered dt-responsive nowrap' , 'id' => 'datatable5'], true) !!}
@@ -38,4 +39,5 @@
     @endpush
 
 @endsection
+@endif
 

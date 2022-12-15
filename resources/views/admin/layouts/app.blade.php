@@ -98,9 +98,9 @@
                                 <p>
                                     @guest
                                     @else
-                                        {{--{{auth()->user()->name }} - Web Developer--}}
+                                        {{auth()->user()->name }}
                                     @endguest
-                                    <small>Member since Nov. 2012</small>
+                                    <small></small>
                                 </p>
                             </li>
                             <li class="user-footer">
@@ -132,14 +132,16 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel">
+            <div class="user-panel" style="display: flex;
+    justify-content: flex-start;
+    align-items: center;">
                 <div class="pull-left image">
                     <img src="{{ asset('') }}adminlte/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     @guest
                     @else
-                        {{--<p>{{auth()->user()->name }}</p>--}}
+                        <p>{{auth()->user()->name }}</p>
                     @endguest
                 </div>
             </div>
