@@ -132,6 +132,40 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <br>
+                            <h3>Answer Questions Articles </h3>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Question ID</th>
+                                            <th scope="col">Category</th>
+                                            <th scope="col">Question Title</th>
+                                            <th scope="col">Answer</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($usersMakeSurveyOptinalQuestions as $record)
+                                            <tr>
+                                                <th scope="row">{{$loop->iteration}}</th>
+                                                <td>{{$record->question_id}}</td>
+                                                <td>{{$record->category_name}}</td>
+                                                <td>{!! $record->title !!} </td>
+                                                <td>{!! $record->answer !!} </td>
+                                            </tr>
+                                        @endforeach
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <!-- /.box-body -->

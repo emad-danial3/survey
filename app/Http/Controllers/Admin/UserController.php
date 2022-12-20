@@ -64,6 +64,16 @@ class UserController extends Controller
             ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(IF(users_surveys_details.chose_option !='option_4',1,null)) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
             ->get();
 
+        $usersMakeSurveyOptinalQuestions = DB::table('category_questions')
+            ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
+            ->leftJoin('categories', 'category_questions.category_id', '=', 'categories.id')
+            ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
+            ->where('users_surveys.survey_id', $lastSurveyId)
+            ->where('users_surveys_details.user_id', 0)
+            ->select('users_surveys_details.question_id','category_questions.title','users_surveys_details.answer','categories.name as category_name')
+            ->get();
+
+
         $sum_option_1_count=0;
         $sum_option_2_count=0;
         $sum_option_3_count=0;
@@ -88,7 +98,7 @@ class UserController extends Controller
 //            ->where('users_surveys.location_id', $user->location_id)
 //        dd($usersMakeSurveyQuestions->toArray());
 
-        return view('admin.users.surveys',compact('user','location','surveys','lastSurveyId','usersMakeSurveyQuestions','question_options','sum_option_1_count','sum_option_2_count','sum_option_3_count','sum_option_4_count','final_total_sum_percentage'));
+        return view('admin.users.surveys',compact('user','location','surveys','lastSurveyId','usersMakeSurveyQuestions','question_options','sum_option_1_count','sum_option_2_count','sum_option_3_count','sum_option_4_count','final_total_sum_percentage','usersMakeSurveyOptinalQuestions'));
     }
     public function getUserStatistic(Request $request)
     {
@@ -109,6 +119,14 @@ class UserController extends Controller
             ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(IF(users_surveys_details.chose_option !='option_4',1,null)) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
             ->get();
 
+        $usersMakeSurveyOptinalQuestions = DB::table('category_questions')
+            ->leftJoin('users_surveys_details', 'category_questions.id', '=', 'users_surveys_details.question_id')
+            ->leftJoin('categories', 'category_questions.category_id', '=', 'categories.id')
+            ->leftJoin('users_surveys', 'users_surveys.id', '=', 'users_surveys_details.users_surveys_id')
+            ->where('users_surveys.survey_id', $lastSurveyId)
+            ->where('users_surveys_details.user_id', 0)
+            ->select('users_surveys_details.question_id','category_questions.title','users_surveys_details.answer','categories.name as category_name')
+            ->get();
 
         $sum_option_1_count=0;
         $sum_option_2_count=0;
@@ -134,7 +152,7 @@ class UserController extends Controller
 //            ->where('users_surveys.location_id', $user->location_id)
 //        dd($usersMakeSurveyQuestions->toArray());
 
-        return view('admin.users.surveys',compact('user','location','surveys','lastSurveyId','usersMakeSurveyQuestions','question_options','sum_option_1_count','sum_option_2_count','sum_option_3_count','sum_option_4_count','final_total_sum_percentage'));
+        return view('admin.users.surveys',compact('user','location','surveys','lastSurveyId','usersMakeSurveyQuestions','question_options','sum_option_1_count','sum_option_2_count','sum_option_3_count','sum_option_4_count','final_total_sum_percentage','usersMakeSurveyOptinalQuestions'));
     }
 
 
