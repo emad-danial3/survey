@@ -6,6 +6,7 @@ use App\DataTables\Admin\AdminDatatable;
 use App\DataTables\Admin\UserDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\userCreate;
+use App\Http\Requests\adminCreate;
 use App\Models\Category;
 use App\Models\Department;
 use App\Models\Page;
@@ -69,7 +70,7 @@ class AdminController extends Controller
         return view('admin.admins.create', compact('roles'));
     }
 
-    public function adminStore(userCreate $request)
+    public function adminStore(adminCreate $request)
     {
         $this->createNewUser($request->all());
         flash()->success(trans('admin.createMessageSuccess'));
@@ -95,10 +96,9 @@ class AdminController extends Controller
             'mobile' => 'required|unique:users,mobile,' . $id,
             'image' => 'nullable',
             'gender' => 'required|in:male,female',
-            'birth_date' => 'required|date',
             'roles' => 'required'
         ]);
-
+        
         $records->roles()->sync((array) $request->input('roles'));
 
         $records->update($request->except('password'));

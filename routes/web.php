@@ -103,6 +103,11 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('/location/edit/{id}', 'LocationController@locationUpdate')->name('admin.locations.edit');
         Route::post('/location/delete/{id}', 'LocationController@locationDelete')->name('admin.locations.delete');
 
+        Route::post('/location/disabled/{id}', 'LocationController@locationDisabled')->name('admin.locations.disabled');
+        Route::post('/location/activated/{id}', 'LocationController@locationActivated')->name('admin.locations.activated');
+
+
+
         Route::get('/departments', 'DepartmentController@departments')->name('admin.departments');
         Route::get('/department/create', 'DepartmentController@departmentCreate')->name('admin.departments.create');
         Route::post('/department/create', 'DepartmentController@departmentStore')->name('admin.departments.create');
@@ -122,8 +127,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
         Route::post('/page/duplicate/{id}', 'PageController@pageDuplicate')->name('admin.pages.duplicate');
         Route::post('/page/activated/{id}', 'PageController@pageActivated')->name('admin.pages.edit');
         Route::post('/page/delete/{id}', 'PageController@pageDelete')->name('admin.pages.delete');
-        
-       
+
+
         Route::get('/settings', 'SettingController@index')->name('settings');
         Route::post('/settings/update', 'SettingController@update')->name('settings.update');
     });

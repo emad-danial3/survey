@@ -57,6 +57,53 @@ class LocationController extends Controller
     }
 
 
+    public function locationDisabled($id)
+    {
+        $page = Locations::find($id);
+
+        // check data deleted or not
+        if ($page != null) {
+            $page->status = "0";
+            $page->save();
+
+            $success = true;
+            $message = trans('admin.disabled_success');
+        } else {
+            $success = true;
+            $message = trans('admin.disabled_error');
+        }
+
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+    }
+
+    public function locationActivated($id)
+    {
+        $page = Locations::find($id);
+
+        // check data deleted or not
+
+        if ($page != null) {
+            $page->status = "1";
+            $page->save();
+            $success = true;
+            $message = trans('admin.activated_success');
+        } else {
+            $success = true;
+            $message = trans('admin.activated_error');
+        }
+
+
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+    }
+
     public function locationDelete($id)
     {
 

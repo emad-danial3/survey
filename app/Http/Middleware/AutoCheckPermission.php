@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Spatie\Permission\Models\Permission;
 use Closure;
-
+use Carbon\Carbon;
 class AutoCheckPermission
 {
     /**
@@ -19,7 +19,24 @@ class AutoCheckPermission
 
 
         if (\App\User::find(auth()->user()->id)->Role->plan == "*") {
-            return $next($request);
+            $admuser=\App\User::find(auth()->user()->id);
+            
+            if($admuser->user_type == 'superadmin'){
+                return $next($request);
+            }else{
+                $today = date("Y-m-d");
+                $start = $admuser->start_date; //from database
+                $end = $admuser->end_date; //from database
+                $today_time = strtotime($today);
+                $start_time = strtotime($start);
+                $end_time = strtotime($end);
+                if ($today_time >= $start_time && $today_time <= $end_time) {
+                    return $next($request);
+                }else{
+                    die('you have not permission now your start permission date in '.$start . "And End date ".$end);
+                }
+            }
+
         } else {
             $perms = $request->route()->getName();
             $plan = \App\User::find(auth()->user()->id)->Role->plan;

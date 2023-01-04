@@ -24,6 +24,8 @@ class CategoryDatatable extends DataTable
             ->eloquent($query)
             ->editColumn('created_at', function ($contact){
                 return date('d/m/Y H:i:s', strtotime($contact->created_at) );
+            })->editColumn('status', function ($contact){
+                return $contact->status == '1'?"Active":"Not Active";
             })
             ->addColumn('action', 'admin.categories.btn.action')
             ->rawColumns([

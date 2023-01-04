@@ -17,9 +17,12 @@ trait AdminTrait
         $user->mobile = $request['mobile'];
         $user->user_type = 'admin';
         $user->gender = $request['gender'];
-        $user->birth_date = $request['birth_date'];
+        $user->location_id = 0;
+        $user->role_id = 2;
+        $user->start_date = $request['start_date'];
+        $user->end_date = $request['end_date'];
         $user->status = 'active';
-        $user->syncRoles($request['roles']);
+
 
         if ($request['image'] != null) {
             $image = $request['image'];
