@@ -45,7 +45,7 @@ return [
     'user_type' => 'نوع المستخدم',
     'editMessageSuccess' => 'تم التعديل بنجاح',
     'createMessageSuccess' => 'تمت الاضافه بنجاح',
-    'loginErrorAdmin' => 'البيانات التى ادخلتها غير صحيحه',
+    'loginErrorAdmin' => 'بيانات الادمن التى ادخلتها غير صحيحه',
     'loginError' => 'البيانات التى ادخلتها غير صحيحه',
     'loginSuccess' => 'تم تسجيل الدخول بنجاح',
     'categories' => 'الاقسام',

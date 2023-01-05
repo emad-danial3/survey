@@ -46,7 +46,7 @@ return [
     'user_type' => 'User Type',
     'editMessageSuccess' => 'Modified successfully',
     'createMessageSuccess' => 'Added successfully',
-    'loginErrorAdmin' => 'The data you entered is not correct',
+    'loginErrorAdmin' => 'The data admin you entered is not correct',
     'loginError' => 'The data you entered is not correct',
     'loginSuccess' => 'You have signed in successfully',
     'categories' => 'Categories',
