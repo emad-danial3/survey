@@ -47,10 +47,9 @@
                             {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                         </div>
 
-                        <div class="form-group">
-                            <label for="users-date" class="col-form-label">{{trans('admin.date')}} *</label>
-                            <input  type="date" class="form-control" id="users-date" value="{{$model->birth_date}}" name="birth_date" required>
-                        </div>
+                        
+
+
 
                         <div class="form-group">
                             <label for="image">{{trans('admin.image')}}</label>
@@ -71,31 +70,44 @@
                             </div>
                         </div>
 
-
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <div class="form-group">
-                                <label for="name">{{trans('admin.roles')}}</label><br>
-                                <input id="select-all" type="checkbox"><label for='select-all'>اختيار الكل</label>
-                                <br>
-                                <div class="row">
-                                    @foreach($perm as $role)
-                                        <div class="col-sm-3">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" name="roles[]" value="{{$role->id}}"
-                                                           @if($model->hasRole($role->name))
-                                                           checked="checked"
-                                                        @endif
-                                                    >
-                                                    {{$role->name_ar}}
-                                                </label>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="start_date" class="col-form-label">Start Date *</label>
+                                <input type="date" class="form-control" id="start_date" value="{{$model->start_date}}"
+                                       name="start_date" required>
                             </div>
-
+                            <div class="form-group col-md-6">
+                                <label for="end_date" class="col-form-label">Start Date *</label>
+                                <input type="date" class="form-control" id="end_date" value="{{$model->end_date}}"
+                                       name="end_date" required>
+                            </div>
                         </div>
+
+
+{{--                        <div class="col-xs-12 col-sm-12 col-md-12">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="name">{{trans('admin.roles')}}</label><br>--}}
+{{--                                <input id="select-all" type="checkbox"><label for='select-all'>اختيار الكل</label>--}}
+{{--                                <br>--}}
+{{--                                <div class="row">--}}
+{{--                                    @foreach($perm as $role)--}}
+{{--                                        <div class="col-sm-3">--}}
+{{--                                            <div class="checkbox">--}}
+{{--                                                <label>--}}
+{{--                                                    <input type="checkbox" name="roles[]" value="{{$role->id}}"--}}
+{{--                                                           @if($model->hasRole($role->name))--}}
+{{--                                                           checked="checked"--}}
+{{--                                                        @endif--}}
+{{--                                                    >--}}
+{{--                                                    {{$role->name_ar}}--}}
+{{--                                                </label>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+{{--                                    @endforeach--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+{{--                        </div>--}}
 
                         <div class="form-group">
                             <button class="btn btn-primary" type="submit">{{trans('admin.submit')}}</button>

@@ -61,7 +61,8 @@ class UserController extends Controller
             ->where('users_surveys.survey_id', $lastSurveyId)
             ->where('users_surveys_details.user_id', $id)
             ->groupBy('users_surveys_details.question_id')
-            ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(IF(users_surveys_details.chose_option !='option_4',1,null)) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
+//            ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(IF(users_surveys_details.chose_option !='option_4',1,null)) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
+            ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(users_surveys_details.id) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
             ->get();
 
         $usersMakeSurveyOptinalQuestions = DB::table('category_questions')
@@ -85,7 +86,8 @@ class UserController extends Controller
            $usersMakeSurveyQuestions[$i]->total_option_2_percent=($lastSurvey->option_2_percent*$usersMakeSurveyQuestions[$i]->option_2_count);
            $usersMakeSurveyQuestions[$i]->total_option_3_percent=($lastSurvey->option_3_percent*$usersMakeSurveyQuestions[$i]->option_3_count);
            $usersMakeSurveyQuestions[$i]->total_option_4_percent=($lastSurvey->option_4_percent*$usersMakeSurveyQuestions[$i]->option_4_count);
-           $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent)/($usersMakeSurveyQuestions[$i]->total_count));
+//           $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent)/($usersMakeSurveyQuestions[$i]->total_count));
+           $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent+$usersMakeSurveyQuestions[$i]->total_option_4_percent)/($usersMakeSurveyQuestions[$i]->total_count));
            $usersMakeSurveyQuestions[$i]->total_percentage= round( $usersMakeSurveyQuestions[$i]->total_percentage, 2);
             $sum_option_1_count +=$usersMakeSurveyQuestions[$i]->option_1_count;
             $sum_option_2_count +=$usersMakeSurveyQuestions[$i]->option_2_count;
@@ -116,7 +118,8 @@ class UserController extends Controller
 
             ->where('users_surveys_details.user_id', $request->input('user_id'))
             ->groupBy('users_surveys_details.question_id')
-            ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(IF(users_surveys_details.chose_option !='option_4',1,null)) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
+            ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(users_surveys_details.id) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
+//            ->select('users_surveys_details.question_id','category_questions.title',DB::raw("count(IF(users_surveys_details.chose_option !='option_4',1,null)) AS  total_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_1',1,null)) AS  option_1_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_2',1,null)) AS  option_2_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_3',1,null)) AS  option_3_count"),DB::raw("count(IF(users_surveys_details.chose_option='option_4',1,null)) AS  option_4_count"))
             ->get();
 
         $usersMakeSurveyOptinalQuestions = DB::table('category_questions')
@@ -139,7 +142,11 @@ class UserController extends Controller
             $usersMakeSurveyQuestions[$i]->total_option_2_percent=($lastSurvey->option_2_percent*$usersMakeSurveyQuestions[$i]->option_2_count);
             $usersMakeSurveyQuestions[$i]->total_option_3_percent=($lastSurvey->option_3_percent*$usersMakeSurveyQuestions[$i]->option_3_count);
             $usersMakeSurveyQuestions[$i]->total_option_4_percent=($lastSurvey->option_4_percent*$usersMakeSurveyQuestions[$i]->option_4_count);
-            $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent)/(($usersMakeSurveyQuestions[$i]->total_count)));
+//            $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent)/(($usersMakeSurveyQuestions[$i]->total_count)));
+            
+            $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent+$usersMakeSurveyQuestions[$i]->total_option_4_percent)/($usersMakeSurveyQuestions[$i]->total_count));
+
+
             $usersMakeSurveyQuestions[$i]->total_percentage= round( $usersMakeSurveyQuestions[$i]->total_percentage, 2);
             $sum_option_1_count +=$usersMakeSurveyQuestions[$i]->option_1_count;
             $sum_option_2_count +=$usersMakeSurveyQuestions[$i]->option_2_count;

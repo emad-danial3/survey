@@ -59,10 +59,10 @@
                                                         @foreach($category['users'] as $induser=>$user)
                                                             <tr>
                                                                 <th scope="row" style="max-width: 350px;width: 350px;overflow: hidden">{{$user['user']['name']}}</th>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="جيد" disabled>  </td>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="متوسط" disabled>  </td>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="ضعيف" disabled>  </td>
-                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="N/A" disabled> </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_1'] }}" disabled>  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_2'] }}" disabled>  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_3'] }}" disabled>  </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_4'] }}" disabled> </td>
                                                             </tr>
 
                                                         @endforeach

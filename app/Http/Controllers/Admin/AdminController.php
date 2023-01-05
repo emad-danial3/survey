@@ -80,10 +80,10 @@ class AdminController extends Controller
     public function adminEdit($id)
     {
         $model = User::findOrFail($id);
-        $roles = Role::pluck('role_ar','role_en','id')->all();
-        $perm = Role::all();
-        $userRole = $model->roles->pluck('role_ar','role_en','id')->all();
-        return view('admin.admins.edit', compact('model', 'roles', 'userRole', 'perm'));
+//        $roles = Role::pluck('role_ar','role_en','id')->all();
+//        $perm = Role::all();
+//        $userRole = $model->roles->pluck('role_ar','role_en','id')->all();
+        return view('admin.admins.edit', compact('model'));
     }
 
     public function adminUpdate(Request $request, $id)
@@ -96,10 +96,10 @@ class AdminController extends Controller
             'mobile' => 'required|unique:users,mobile,' . $id,
             'image' => 'nullable',
             'gender' => 'required|in:male,female',
-            'roles' => 'required'
+
         ]);
-        
-        $records->roles()->sync((array) $request->input('roles'));
+
+//        $records->roles()->sync((array) $request->input('roles'));
 
         $records->update($request->except('password'));
         if (request()->input('password')) {

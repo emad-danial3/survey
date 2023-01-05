@@ -69,21 +69,18 @@
 
                                 @foreach($page_question as $key=>$category)
                                 <div class="row">
-                                    <div class="col-md-2">
-                                    </div>
-                                    <div class="col-md-8 category_name">
+
+                                    <div class="col-md-12 category_name">
                                         <h3 class="box-title">{{$category['category']['name']}} - {{$category['location']['name']}}</h3>
                                     </div>
-                                    <div class="col-md-2">
-                                    </div>
+
                                 </div>
                                 @if($category['category']['questions'] && count($category['category']['questions'])>0)
                                     @foreach($category['category']['questions'] as $ind=>$question)
                                         @if($question['type'] == 'choice')
                                            <div class="row">
-                                            <div class="col-md-2">
-                                            </div>
-                                            <div class="col-md-8 card">
+
+                                            <div class="col-md-12 card">
                                                 <table class="table table-borderless">
                                                     <thead>
                                                     <tr >
@@ -116,14 +113,12 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="col-md-2">
-                                            </div>
+
                                         </div>
                                         @else
                                                     <div class="row">
-                                                        <div class="col-md-2">
-                                                        </div>
-                                                        <div class="col-md-8 card">
+
+                                                        <div class="col-md-12 card">
                                                             <br>
                                                             <div  style="display: flex;"> {!! $question['title'] !!}  @if($question['required'] == '1') <span style="color: #d93025">  &nbsp; *  </span> @endif</div>
                                                             <br>
@@ -133,8 +128,7 @@
                                                             <br>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-2">
-                                                        </div>
+
                                                     </div>
                                         @endif
 

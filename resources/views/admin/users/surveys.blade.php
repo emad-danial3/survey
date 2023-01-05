@@ -80,18 +80,18 @@
                                                             <th colspan="4" class="text-center"> عدد الذين قاموا بالاستطلاع</th>
                                                         </tr>
                                                         <tr>
-                                                            <th  class="arabicStyle">جيد</th>
-                                                            <td>متوسط</td>
-                                                            <td>ضعيف</td>
-                                                            <td>N/A</td>
+                                                            <th  class="arabicStyle">{{$question_options['option_1']}}</th>
+                                                            <td>{{$question_options['option_2']}}</td>
+                                                            <td>{{$question_options['option_3']}}</td>
+                                                            <td>{{$question_options['option_4']}}</td>
                                                         </tr>
                                                     </table>
                                                 </th>
                                                 <th class="arabicStyle">TOTAL</th>
-                                                <th class="arabicStyle">جيد</th>
-                                                <th class="arabicStyle">متوسط</th>
-                                                <th class="arabicStyle">ضعيف</th>
-                                                <th class="arabicStyle">N/A</th>
+                                                <th class="arabicStyle">{{$question_options['option_1']}}</th>
+                                                <th class="arabicStyle">{{$question_options['option_2']}}</th>
+                                                <th class="arabicStyle">{{$question_options['option_3']}}</th>
+                                                <th class="arabicStyle">{{$question_options['option_4']}}</th>
                                                 <th class="arabicStyle">SUM</th>
                                             </tr>
                                             </thead>
