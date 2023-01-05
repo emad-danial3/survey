@@ -14,7 +14,7 @@ class AuthController extends Controller
         // Attempt to log the user in
         if(Auth::guard('web')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember))
         {
-            if (auth('web')->user()->user_type != 'admin') {
+            if ((auth('web')->user()->user_type != 'admin') && (auth('web')->user()->user_type != 'superadmin')) {
                 flash(trans('admin.loginErrorAdmin'))->error();
                 Auth::guard('web')->logout();
                 return redirect()->back();

@@ -17,13 +17,12 @@ class AutoCheckPermission
     public function handle($request, Closure $next)
     {
 
-
         if (\App\User::find(auth()->user()->id)->Role->plan == "*") {
             $admuser=\App\User::find(auth()->user()->id);
-            
+
             if($admuser->user_type == 'superadmin'){
                 return $next($request);
-            }else{
+            }else if ($admuser->user_type == 'admin'){
                 $today = date("Y-m-d");
                 $start = $admuser->start_date; //from database
                 $end = $admuser->end_date; //from database
