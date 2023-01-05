@@ -20,6 +20,7 @@ class AutoCheckPermission
         if (\App\User::find(auth()->user()->id)->Role->plan == "*") {
             $admuser=\App\User::find(auth()->user()->id);
 
+            
             if($admuser->user_type == 'superadmin'){
                 return $next($request);
             }else if ($admuser->user_type == 'admin'){
