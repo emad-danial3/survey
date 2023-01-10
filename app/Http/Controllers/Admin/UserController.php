@@ -143,7 +143,7 @@ class UserController extends Controller
             $usersMakeSurveyQuestions[$i]->total_option_3_percent=($lastSurvey->option_3_percent*$usersMakeSurveyQuestions[$i]->option_3_count);
             $usersMakeSurveyQuestions[$i]->total_option_4_percent=($lastSurvey->option_4_percent*$usersMakeSurveyQuestions[$i]->option_4_count);
 //            $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent)/(($usersMakeSurveyQuestions[$i]->total_count)));
-            
+
             $usersMakeSurveyQuestions[$i]->total_percentage=(($usersMakeSurveyQuestions[$i]->total_option_1_percent + $usersMakeSurveyQuestions[$i]->total_option_2_percent+$usersMakeSurveyQuestions[$i]->total_option_3_percent+$usersMakeSurveyQuestions[$i]->total_option_4_percent)/($usersMakeSurveyQuestions[$i]->total_count));
 
 

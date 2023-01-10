@@ -37,60 +37,6 @@ class UserSurveysController extends Controller
         return $user->render('admin.reports.index');
     }
 
-    public function userCreate()
-    {
-        $question_options =Setting::first()->toArray();
-        return view('admin.users.create', compact('question_options' ));
-    }
-
-
-    public function userStore(userCreate $request)
-    {
-        $this->createNewUser($request->all());
-        flash()->success(trans('admin.createMessageSuccess'));
-        return redirect(route('admin.users'));
-    }
-
-    public function userEdit($id)
-    {
-        $model = User::findOrFail($id);
-        $question_options =Setting::first()->toArray();
-        return view('admin.users.edit', compact('model','question_options'));
-    }
-
-    public function userUpdate(Request $request, $id)
-    {
-        $records = User::findOrFail($id);
-        $this->validate($request, [
-            'name' => 'required',
-            'location_id' => 'required',
-            'image' => 'nullable',
-            'gender' => 'required|in:male,female',
-        ]);
-
-
-        if ($records->location_id == $request->location_id) {
-            $records->update($request->except('password'));
-            if (request()->input('password')) {
-                $records->update(['password' => bcrypt($request->password)]);
-            }
-            if ($request->hasFile('image')) {
-                // to get image name $image->getClientOriginalName();
-                $image = $request->image;
-                $image_new_name = time() . '.jpg';
-                $image->move('uploads/users', $image_new_name);
-                $records->image = 'uploads/users/' . $image_new_name;
-                $records->save();
-            }
-        } else {
-            $records->status = 'disactive';
-            $records->save();
-            $this->createNewUser($request->all());
-        }
-
-        flash()->success(trans('admin.editMessageSuccess'));
-        return redirect(route('admin.users'));
-    }
 
     public function reportShow($id)
     {

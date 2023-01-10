@@ -71,11 +71,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
         Route::get('/reports', 'UserSurveysController@reports')->name('admin.reports');
         Route::get('/report/show/{id}', 'UserSurveysController@reportShow')->name('admin.reports.show');
-//        Route::get('/user/create', 'UserController@userCreate')->name('admin.users.create');
-//        Route::get('/user/posts/{id}', 'UserController@userPosts')->name('admin.users.posts');
-//        Route::post('/user/create', 'UserController@userStore')->name('admin.users.create');
-//        Route::get('/user/edit/{id}', 'UserController@userEdit')->name('admin.users.edit');
-//        Route::post('/user/edit/{id}', 'UserController@userUpdate')->name('admin.users.edit');
         Route::post('/report/delete/{id}', 'UserSurveysController@reportDelete')->name('admin.reports.delete');
 
 

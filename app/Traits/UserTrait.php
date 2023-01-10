@@ -19,8 +19,9 @@ trait UserTrait
         $user->gender = $request['gender'];
         $user->location_id = $request['location_id'];
         $user->status = 'active';
+        $user->created_by = auth()->user()->id ;
 
-        if (isset($request->image) && $request->image != null) {
+        if ($request['image'] != null) {
             $image = $request['image'];
             $image_new_name = time() . '.jpg';
             $image->move('uploads/users', $image_new_name);

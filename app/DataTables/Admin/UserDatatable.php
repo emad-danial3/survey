@@ -45,7 +45,12 @@ class UserDatatable extends DataTable
      */
     public function query()
     {
-        return User::query()->where('user_type', 'worker')->select('users.*')->latest();
+       
+        if(auth()->user()->id == 2){
+            return User::query()->where('user_type', 'worker')->select('users.*')->latest();
+        }else{
+            return User::query()->where('user_type', 'worker')->where('created_by',auth()->user()->id )->select('users.*')->latest();
+        }
     }
 
     /**

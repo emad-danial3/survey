@@ -25,7 +25,6 @@ class userCreate extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-
             'location_id' => ['required','exists:locations,id'],
             'gender' => 'required|in:male,female',
         ];
