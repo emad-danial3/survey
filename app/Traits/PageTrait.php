@@ -31,6 +31,7 @@ trait PageTrait
         $page->option_2_percent = $request['option_2_percent'] ?? 0;
         $page->option_3_percent = $request['option_3_percent'] ?? 0;
         $page->option_4_percent = $request['option_4_percent'] ?? 0;
+        $page->option_5_percent = $request['option_5_percent'] ?? 0;
 
         $page->save();
         DB::commit();

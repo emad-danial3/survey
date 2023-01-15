@@ -70,6 +70,12 @@
                                            placeholder="{{trans('admin.option_4')}}"
                                            @if(isset($settings->option_4))  value="{{$settings->option_4}}" @endif>
                                 </div>
+                                <div class="form-group col-md-3">
+                                    <label for="option_5">{{trans('admin.option_5')}}</label>
+                                    <input type="text" class="form-control" name="option_5"
+                                           placeholder="{{trans('admin.option_5')}}"
+                                           @if(isset($settings->option_5))  value="{{$settings->option_5}}" @endif>
+                                </div>
                             </div>
 
                             <div class="form-group">

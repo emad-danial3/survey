@@ -74,16 +74,17 @@
 {{--                                                <th>{{trans('admin.status')}}</th>--}}
                                                 <th  class="arabicStyle"> م </th>
                                                 <th  class="arabicStyle"> سؤال استطلاع الراي </th>
-                                                <th  class="arabicStyle" colspan="4">
+                                                <th  class="arabicStyle" colspan="5">
                                                     <table class="table " style="margin-bottom: 0px">
                                                         <tr>
-                                                            <th colspan="4" class="text-center"> عدد الذين قاموا بالاستطلاع</th>
+                                                            <th colspan="5" class="text-center"> عدد الذين قاموا بالاستطلاع</th>
                                                         </tr>
                                                         <tr>
                                                             <th  class="arabicStyle">{{$question_options['option_1']}}</th>
                                                             <td>{{$question_options['option_2']}}</td>
                                                             <td>{{$question_options['option_3']}}</td>
                                                             <td>{{$question_options['option_4']}}</td>
+                                                            <td>{{$question_options['option_5']}}</td>
                                                         </tr>
                                                     </table>
                                                 </th>
@@ -92,6 +93,7 @@
                                                 <th class="arabicStyle">{{$question_options['option_2']}}</th>
                                                 <th class="arabicStyle">{{$question_options['option_3']}}</th>
                                                 <th class="arabicStyle">{{$question_options['option_4']}}</th>
+                                                <th class="arabicStyle">{{$question_options['option_5']}}</th>
                                                 <th class="arabicStyle">SUM</th>
                                             </tr>
                                             </thead>
@@ -105,11 +107,13 @@
                                                     <td class="text-center"> {{$record->option_2_count}} </td>
                                                     <td class="text-center"> {{$record->option_3_count}} </td>
                                                     <td class="text-center"> {{$record->option_4_count}} </td>
+                                                    <td class="text-center"> {{$record->option_5_count}} </td>
                                                     <td class="text-center"> {{$record->total_count}} </td>
                                                     <td class="text-center"> {{$record->total_option_1_percent}}   % </td>
                                                     <td class="text-center"> {{$record->total_option_2_percent}}   % </td>
                                                     <td class="text-center"> {{$record->total_option_3_percent}}   % </td>
                                                     <td class="text-center"> {{$record->total_option_4_percent}}   % </td>
+                                                    <td class="text-center"> {{$record->total_option_5_percent}}   % </td>
                                                     <td class="text-center"> {{$record->total_percentage}}  % </td>
 
 
@@ -122,8 +126,9 @@
                                                 <th class="text-center"> {{$sum_option_2_count}} </th>
                                                 <th class="text-center"> {{$sum_option_3_count}} </th>
                                                 <th class="text-center"> {{$sum_option_4_count}} </th>
+                                                <th class="text-center"> {{$sum_option_5_count}} </th>
                                                 <th class="text-center">  </th>
-                                                <th colspan="4" class="text-center" style="background-color: #bdd8fc">متوسط تقييم الموظف</th>
+                                                <th colspan="5" class="text-center" style="background-color: #bdd8fc">متوسط تقييم الموظف</th>
                                                 <th class="text-center" style="color: #d9252b;background-color: #bdd8fc"> {{$final_total_sum_percentage}} % </th>
                                             </tr>
 
@@ -133,6 +138,11 @@
                                 </div>
                             </div>
 
+
+                            <br>
+                            <h3>Total Voters On This Survey</h3>
+                            <h3> &nbsp;  &nbsp;  {{$totalvoters}} Vote In</h3>
+                            <br>
 
                             <br>
                             <h3>Answer Questions Articles </h3>

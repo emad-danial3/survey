@@ -55,6 +55,10 @@
                             <label for="option_4_percent"> Option {{$question_options['option_4']}} percent (%)</label>
                             {!! Form::number('option_4_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_4_percent']) !!}
                         </div>
+                        <div class="form-group col-md-3">
+                            <label for="option_5_percent"> Option {{$question_options['option_5']}} percent (%)</label>
+                            {!! Form::number('option_5_percent', null , ['class' => 'form-control', 'required' => 'required','id'=>'option_5_percent']) !!}
+                        </div>
 
 <br>
                         <div class="col-md-12" id="LocationsCategories">
@@ -255,6 +259,7 @@
                 let main_page_option_2_percent= $("#option_2_percent").val();
                 let main_page_option_3_percent= $("#option_3_percent").val();
                 let main_page_option_4_percent= $("#option_4_percent").val();
+                let main_page_option_5_percent= $("#option_5_percent").val();
                 let location_id = $("#location_id").val();
                 let category_id = $("#category_id").val();
 
@@ -269,6 +274,7 @@
                     formData.append('main_page_option_2_percent',main_page_option_2_percent);
                     formData.append('main_page_option_3_percent',main_page_option_3_percent);
                     formData.append('main_page_option_4_percent',main_page_option_4_percent);
+                    formData.append('main_page_option_5_percent',main_page_option_5_percent);
                     formData.append('location_id',location_id);
                     formData.append('category_id',category_id);
                     formData.append('question_users',  JSON.stringify(question_users));
@@ -314,6 +320,7 @@
                                 $( "#option_2_percent" ).prop( "disabled", true );
                                 $( "#option_3_percent" ).prop( "disabled", true );
                                 $( "#option_4_percent" ).prop( "disabled", true );
+                                $( "#option_5_percent" ).prop( "disabled", true );
                                 $("#questions_users_store").text('');
 
                                 $('#LocationsCategories').show();

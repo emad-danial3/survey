@@ -34,6 +34,7 @@ class SettingController extends Controller
             'option_2' => 'required',
             'option_3' => 'required',
             'option_4' => 'required',
+            'option_5' => 'required',
         ]);
 
         $setting = Setting::first();
@@ -61,6 +62,7 @@ class SettingController extends Controller
             $setting->option_2 = $request->option_2;
             $setting->option_3 = $request->option_3;
             $setting->option_4 = $request->option_4;
+            $setting->option_5 = $request->option_5;
             $setting->save();
 
             flash()->success(trans('admin.editMessageSuccess'));
@@ -88,6 +90,7 @@ class SettingController extends Controller
         $setting->option_2 = $request->option_2;
         $setting->option_3 = $request->option_3;
         $setting->option_4 = $request->option_4;
+        $setting->option_5 = $request->option_5;
 
         $setting->save();
 

@@ -50,6 +50,7 @@
                                                             <th scope="col">{{ $question_options['option_2'] }}</th>
                                                             <th scope="col">{{ $question_options['option_3'] }}</th>
                                                             <th scope="col">{{ $question_options['option_4'] }}</th>
+                                                            <th scope="col">{{ $question_options['option_5'] }}</th>
                                                         @endif
                                                     </tr>
                                                     </thead>
@@ -63,6 +64,7 @@
                                                                 <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_2'] }}" disabled>  </td>
                                                                 <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_3'] }}" disabled>  </td>
                                                                 <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_4'] }}" disabled> </td>
+                                                                <td><input type="radio"  name="{{$question['id']}}-{{$user['user']['id']}}" value="{{ $question_options['option_5'] }}" disabled> </td>
                                                             </tr>
 
                                                         @endforeach

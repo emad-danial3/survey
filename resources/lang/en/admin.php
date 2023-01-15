@@ -170,6 +170,7 @@ return [
     'option_2' => 'Option 2 ',
     'option_3' => 'Option 3 ',
     'option_4' => 'Option 4 ',
+    'option_5' => 'Option 5 ',
     'userName' => 'User Name',
     'placeName' => 'Place Name',
     'from_lat' => 'From Latitude ',
