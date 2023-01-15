@@ -84,7 +84,7 @@
                                                 <table class="table table-borderless">
                                                     <thead>
                                                     <tr >
-                                                        <th scope="col" colspan="5" style="display: flex;width: 200%!important;"> {!! $question['title'] !!}  @if($question['required'] == '1') <span style="color: #d93025">  &nbsp; *  </span> @endif</th>
+                                                        <th scope="col" colspan="5" > {!! $question['title'] !!}  @if($question['required'] == '1') <span style="color: #d93025">  &nbsp; *  </span> @endif</th>
                                                     </tr>
                                                     <tr>
                                                         <th scope="col" > </th>
