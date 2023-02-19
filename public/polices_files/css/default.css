@@ -1,0 +1,173 @@
+
+.m-10 {
+    margin: 10px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mr-10 {
+    margin-right: 10px;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.navbar-brand-logo {
+    width: 200px;
+    margin-top: -15px;
+}
+
+.marign_5px {
+    margin: 5px;
+}
+
+
+.menu_link {
+    font-weight: bold;
+}
+
+
+.loading-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background: rgba(0, 0, 0, .5);
+    z-index: 99;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    top: 0;
+}
+
+.d-none {
+    display: none;
+}
+
+
+.glyphicon.spinning {
+    animation: spin 1s infinite linear;
+    -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
+}
+
+@-webkit-keyframes spin2 {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.googleMap {
+    height: 300px !important;
+}
+
+.padding_10px {
+    padding: 10px;
+}
+
+.text_bold {
+    font-weight: 700;
+}
+
+.tr_warning {
+    background-color: #c7c7c7;
+}
+
+.marign_botton_5px {
+    margin-bottom: 5px;
+}
+
+.star_red {
+    color: #ed0a0a;
+}
+
+.warning_input {
+    border: 1px solid #ed0a0a;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.white_space_no_wrap {
+    white-space: nowrap;
+}
+
+.border_cell_table {
+    border: 1px solid black;
+}
+
+
+.panel-border {
+    border: 1px solid #337ab7;
+}
+
+
+/* start  that block of code related to with tables**/
+
+.table-hideable td,
+.table-hideable th {
+    width: auto;
+    transition: width .5s, margin .5s;
+}
+
+.btn-condensed.btn-condensed {
+    padding: 0 5px;
+    box-shadow: none;
+}
+
+
+/* use class to have a little animation */
+.hide-col {
+    width: 0px !important;
+    height: 0px !important;
+    display: block !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.custom_table tr:last {
+    background-color: yellow;
+}
+
+.customer_color_for_td {
+    background-color: yellow;
+    border: 1px solid;
+}
+
+/* end of block of code related with tables **/
+
+.navs_tabs_custom_style {
+    color: #fdfdfd !important;
+
+}
+
+.navs_tabs_custom_style:hover {
+    color: #555 !important;
+    background-color: #fdfdfd !important;
+}
+
+.active .navs_tabs_custom_style {
+    color: #555 !important;
+    background-color: #fdfdfd !important;
+}
+
+

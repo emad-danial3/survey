@@ -135,3 +135,12 @@ Route::get('lang/{lang}', function ($lang) {
     $lang == 'ar' ? session()->put('lang', 'ar') : session()->put('lang', 'en');
     return back();
 });
+
+
+Route::group(['namespace' => 'Admin'], function () {
+    Route::get("/policies", 'policiesController@index');
+    Route::POST("/policies_files", 'policiesController@getDirFiles');
+    Route::get("policies/list_all_files", 'policiesController@listAllFiles');
+    Route::get("policies/indexing_policies", 'policiesController@indexingPolicies');
+});
+
