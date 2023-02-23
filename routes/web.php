@@ -56,7 +56,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
 
         Route::resource('role', 'RoleController')->except('destroy');
-        Route::post('/admin/destroy/{id}', 'RoleController@destroy')->name('admin.admins.destroy');
+        Route::resource('policies', 'PolicyController');
+        Route::get('/policies/edit/{id}', 'PolicyController@edit')->name('admin.policies.edit');
+        Route::post('/policies/destroy/{id}', 'PolicyController@destroy')->name('admin.policies.destroy');
 
         Route::get('/users', 'UserController@users')->name('admin.users');
         Route::get('/user/create', 'UserController@userCreate')->name('admin.users.create');

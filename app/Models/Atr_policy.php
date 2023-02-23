@@ -14,7 +14,7 @@ class Atr_policy extends Model
         "policy_content",
         "policy_page",
         "policy_path",
-        "created_at"
+        
     ];
 
 
