@@ -68,7 +68,7 @@
                                                                     <th scope="col" class="text-center">{{ $question_options['option_1'] }}</th>
                                                                     <th scope="col" class="text-center">{{ $question_options['option_2'] }}</th>
                                                                     <th scope="col" class="text-center">{{ $question_options['option_3'] }}</th>
-                                                                    <th scope="col" class="text-center">{{ $question_options['option_4'] }}</th>
+
                                                                     <th scope="col" class="text-center">{{ $question_options['option_5'] }}</th>
                                                                 @endif
                                                             </tr>
@@ -94,7 +94,7 @@
                                                                         <td class="text-center"><input type="radio" class="this_option" name="{{$question['id']}}-{{$user['user']['id']}}" value="option_1" @if($chosen == 'option_1') checked @endif  disabled>  </td>
                                                                         <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_2"@if($chosen == 'option_2') checked @endif disabled>  </td>
                                                                         <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_3"@if($chosen == 'option_3') checked @endif disabled>  </td>
-                                                                        <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_4" @if($chosen == 'option_4') checked @endif disabled> </td>
+
 
                                                                     <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_5" @if($chosen == 'option_5') checked @endif disabled> </td>
                                                                     </tr>

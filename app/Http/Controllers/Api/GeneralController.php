@@ -140,7 +140,7 @@ class GeneralController extends Controller
                 foreach ($alldata as $key => $value) {
                     if ($key == '_token' || $key == 'LAST_NAME'|| $key == 'EMPLOYEE_ID'|| $key == 'EMAIL_ADDRESS'|| $key == 'location_id'|| $key == 'survey_id') {
                     } else  {
-                        if($value == 'option_1' || $value == 'option_2'|| $value == 'option_3'|| $value == 'option_4'|| $value == 'option_5'){
+                        if($value == 'option_1' || $value == 'option_2'|| $value == 'option_3'|| $value == 'option_5'){
                             $pieces = explode("-", $key);
                             $question_id = $pieces[0];
                             $user_id = $pieces[1];

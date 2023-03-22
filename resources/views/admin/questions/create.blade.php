@@ -97,11 +97,7 @@
                                             <label for="question_option_3">{{$question_options['option_3']}}</label>
 
                                         </div>
-                                        <div class="col-md-3">
-                                            <label for="question_option_4">Option 4</label><br>
-                                            <label for="question_option_4">{{$question_options['option_4']}}</label>
 
-                                        </div>
                                         <div class="col-md-3">
                                             <label for="question_option_5">Option 5</label><br>
                                             <label for="question_option_5">{{$question_options['option_5']}}</label>

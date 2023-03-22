@@ -171,7 +171,6 @@ class PageController extends Controller
             $page->option_1_percent = $request['main_page_option_1_percent'] ?? 0;
             $page->option_2_percent = $request['main_page_option_2_percent'] ?? 0;
             $page->option_3_percent = $request['main_page_option_3_percent'] ?? 0;
-            $page->option_4_percent = $request['main_page_option_4_percent'] ?? 0;
             $page->option_5_percent = $request['main_page_option_5_percent'] ?? 0;
             $page->save();
             if ($page) {
@@ -294,7 +293,7 @@ class PageController extends Controller
             $page_copy->option_1_percent =$page->option_1_percent ?? 0;
             $page_copy->option_2_percent =$page->option_2_percent ?? 0;
             $page_copy->option_3_percent = $page->option_3_percent ?? 0;
-            $page_copy->option_4_percent = $page->option_4_percent ?? 0;
+            
             $page_copy->option_5_percent = $page->option_5_percent ?? 0;
             $page_copy->save();
             if ($page_copy) {

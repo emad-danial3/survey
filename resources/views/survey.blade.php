@@ -92,7 +92,7 @@
                                                             <th scope="col" class="text-center">{{ $question_options['option_1'] }}</th>
                                                             <th scope="col" class="text-center">{{ $question_options['option_2'] }}</th>
                                                             <th scope="col" class="text-center">{{ $question_options['option_3'] }}</th>
-                                                            <th scope="col" class="text-center">{{ $question_options['option_4'] }}</th>
+
                                                             <th scope="col" class="text-center">{{ $question_options['option_5'] }}</th>
                                                         @endif
                                                     </tr>
@@ -106,7 +106,7 @@
                                                                 <td class="text-center"><input type="radio" class="this_option" name="{{$question['id']}}-{{$user['user']['id']}}" value="option_1" @if($question['required'] == '1') required @endif >  </td>
                                                                 <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_2">  </td>
                                                                 <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_3">  </td>
-                                                                <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_4"> </td>
+
                                                                 <td class="text-center"><input type="radio" class="this_option"  name="{{$question['id']}}-{{$user['user']['id']}}" value="option_5"> </td>
                                                             </tr>
 
