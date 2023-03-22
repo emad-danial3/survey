@@ -305,7 +305,7 @@ class PageController extends Controller
                         if ($page_q) {
                             if($page_q->category_id && $page_q->location_id){
                             $page_question = new PageQuestions();
-                            $page_question->page_id = $page_copy->page_id;
+                            $page_question->page_id = $page_copy->id;
                             $page_question->category_id = $page_q->category_id;
                             $page_question->location_id = $page_q->location_id;
                             $page_question->save();
