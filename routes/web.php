@@ -38,6 +38,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
     Route::get('/logout', 'AuthController@logout')->name('admin.logout');
     Route::post('/addNewQuestion', 'PageController@addNewQuestion');
     Route::post('/saveUpdateUser', 'PageController@saveUpdateUser');
+    Route::post('/saveAddNewUser', 'PageController@saveAddNewUser');
     Route::post('/addNewUser', 'PageController@addNewUser');
     Route::post('/deleteCategoryUser', 'PageController@deleteCategoryUser');
     Route::post('/deleteCategoryRow', 'PageController@deleteCategoryRow');

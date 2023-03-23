@@ -33,8 +33,8 @@ class PageController extends Controller
 
     public function pageCreate()
     {
-        $question_options =Setting::first()->toArray();
-        return view('admin.pages.create', compact('question_options' ));
+        $question_options = Setting::first()->toArray();
+        return view('admin.pages.create', compact('question_options'));
     }
 
     public function pageStore(Request $request)
@@ -46,11 +46,11 @@ class PageController extends Controller
 
     public function getUsersByLocation(Request $request)
     {
-        $users = User::where("location_id", $request->location_id)->where("status", 'active')->where('user_type', 'worker')->get();
+        $users    = User::where("location_id", $request->location_id)->where("status", 'active')->where('user_type', 'worker')->get();
         $response = [
-            'status' => 200,
+            'status'  => 200,
             'message' => "All Users",
-            'data' => $users
+            'data'    => $users
         ];
         return response()->json($response);
     }
@@ -61,41 +61,42 @@ class PageController extends Controller
 
         $page_question = PageQuestions::where('page_id', $request['page_id'])->where('location_id', $request['location_id'])->where('category_id', $request['category_id'])->first();
         if ($page_question) {
-            $page_question_users = new PageQuestionUsers();
+            $page_question_users                 = new PageQuestionUsers();
             $page_question_users->page_detail_id = $page_question->id;
-            $page_question_users->user_id = $request['user_id'];
+            $page_question_users->user_id        = $request['user_id'];
             $page_question_users->save();
             $response = [
-                'status' => 200,
+                'status'  => 200,
                 'message' => "Question Created Success",
-                'data' => $page_question
+                'data'    => $page_question
             ];
             return response()->json($response);
-        } else {
-            if($request['page_id'] && $request['category_id'] && $request['location_id']){
-                $page_question = new PageQuestions();
-                $page_question->page_id = $request['page_id'];
+        }
+        else {
+            if ($request['page_id'] && $request['category_id'] && $request['location_id']) {
+                $page_question              = new PageQuestions();
+                $page_question->page_id     = $request['page_id'];
                 $page_question->category_id = $request['category_id'];
                 $page_question->location_id = $request['location_id'];
                 $page_question->save();
                 if ($page_question) {
-                    $page_question_users = new PageQuestionUsers();
+                    $page_question_users                 = new PageQuestionUsers();
                     $page_question_users->page_detail_id = $page_question->id;
-                    $page_question_users->user_id = $request['user_id'];
+                    $page_question_users->user_id        = $request['user_id'];
                     $page_question_users->save();
                 }
                 $response = [
-                    'status' => 200,
+                    'status'  => 200,
                     'message' => "Question Created Success",
-                    'data' => $page_question
+                    'data'    => $page_question
                 ];
                 return response()->json($response);
             }
         }
         $response = [
-            'status' => 404,
+            'status'  => 404,
             'message' => "error not found",
-            'data' => null
+            'data'    => null
         ];
         return response()->json($response);
     }
@@ -108,16 +109,50 @@ class PageController extends Controller
             $row->user_id = $request['user_id'];
             $row->save();
             $response = [
-                'status' => 200,
+                'status'  => 200,
                 'message' => "Question Created Success",
-                'data' => $row
+                'data'    => $row
             ];
             return response()->json($response);
         }
         $response = [
-            'status' => 404,
+            'status'  => 404,
             'message' => "error not found",
-            'data' => null
+            'data'    => null
+        ];
+        return response()->json($response);
+    }
+
+    public function saveAddNewUser(Request $request)
+    {
+
+        $row = PageQuestionUsers::where('page_detail_id', $request->id)->first();
+        if ($row) {
+            $notrow = PageQuestionUsers::where('page_detail_id', $request->id)->where('user_id', $request->user_id)->first();
+            if (empty($notrow)) {
+                $page_question_users                 = new PageQuestionUsers();
+                $page_question_users->page_detail_id = $request->id;
+                $page_question_users->user_id        = $request->user_id;
+                $page_question_users->save();
+                $response = [
+                    'status'  => 200,
+                    'message' => "Question Created Success",
+                    'data'    => $page_question_users
+                ];
+                return response()->json($response);
+            }else{
+              $response = [
+            'status'  => 404,
+            'message' => "user exist befor",
+            'data'    => $notrow
+        ];
+        return response()->json($response);
+            }
+        }
+        $response = [
+            'status'  => 404,
+            'message' => "error not found",
+            'data'    => null
         ];
         return response()->json($response);
     }
@@ -130,7 +165,8 @@ class PageController extends Controller
         if ($delete == 1) {
             $success = true;
             $message = trans('company.delete_success');
-        } else {
+        }
+        else {
             $success = true;
             $message = trans('company.delete_error');
         }
@@ -145,12 +181,13 @@ class PageController extends Controller
     {
 
         $delete = PageQuestions::where('id', $request->id)->delete();
-                  PageQuestionUsers::where('page_detail_id', $request->id)->delete();
+        PageQuestionUsers::where('page_detail_id', $request->id)->delete();
         // check data deleted or not
         if ($delete == 1) {
             $success = true;
             $message = trans('company.delete_success');
-        } else {
+        }
+        else {
             $success = true;
             $message = trans('company.delete_error');
         }
@@ -164,78 +201,79 @@ class PageController extends Controller
     public function addNewQuestion(Request $request)
     {
         if (!isset($request->page_id) || $request->page_id == null) {
-            $page = new Page();
-            $page->name = $request['main_page_title'];
-            $page->from_date = $request['main_page_date'] ?? null;
-            $page->to_date = $request['main_page_to_date'] ?? null;
+            $page                   = new Page();
+            $page->name             = $request['main_page_title'];
+            $page->from_date        = $request['main_page_date'] ?? null;
+            $page->to_date          = $request['main_page_to_date'] ?? null;
             $page->option_1_percent = $request['main_page_option_1_percent'] ?? 0;
             $page->option_2_percent = $request['main_page_option_2_percent'] ?? 0;
             $page->option_3_percent = $request['main_page_option_3_percent'] ?? 0;
             $page->option_5_percent = $request['main_page_option_5_percent'] ?? 0;
             $page->save();
             if ($page) {
-                if($request['category_id'] && $request['location_id']){
-                $page_question = new PageQuestions();
-                $page_question->page_id = $page->id;
-                $page_question->category_id = $request['category_id'];
-                $page_question->location_id = $request['location_id'];
-                $page_question->save();
-                if ($page_question) {
-                    $question_users_array = json_decode($request->question_users, true);
-                    if ($question_users_array && count($question_users_array) > 0) {
-                        foreach ($question_users_array as $key => $user) {
-                            if ($user) {
-                                $page_question_users = new PageQuestionUsers();
-                                $page_question_users->page_detail_id = $page_question->id;
-                                $page_question_users->user_id = $user;
-                                $page_question_users->save();
+                if ($request['category_id'] && $request['location_id']) {
+                    $page_question              = new PageQuestions();
+                    $page_question->page_id     = $page->id;
+                    $page_question->category_id = $request['category_id'];
+                    $page_question->location_id = $request['location_id'];
+                    $page_question->save();
+                    if ($page_question) {
+                        $question_users_array = json_decode($request->question_users, true);
+                        if ($question_users_array && count($question_users_array) > 0) {
+                            foreach ($question_users_array as $key => $user) {
+                                if ($user) {
+                                    $page_question_users                 = new PageQuestionUsers();
+                                    $page_question_users->page_detail_id = $page_question->id;
+                                    $page_question_users->user_id        = $user;
+                                    $page_question_users->save();
+                                }
                             }
                         }
                     }
                 }
-                }
             }
             $response = [
-                'status' => 200,
+                'status'  => 200,
                 'message' => "Question Created Success",
-                'data' => $page
+                'data'    => $page
             ];
             return response()->json($response);
-        } else {
+        }
+        else {
             $page = Page::findOrFail($request->page_id);
             if ($page) {
-                if($request['category_id'] && $request['location_id']){
-                $page_question = new PageQuestions();
-                $page_question->page_id = $page->id;
-                $page_question->category_id = $request['category_id'];
-                $page_question->location_id = $request['location_id'];
-                $page_question->save();
-                if ($page_question) {
-                    $question_users_array = json_decode($request->question_users, true);
-                    if ($question_users_array && count($question_users_array) > 0) {
-                        foreach ($question_users_array as $key => $user) {
-                            if ($user) {
-                                $page_question_users = new PageQuestionUsers();
-                                $page_question_users->page_detail_id = $page_question->id;
-                                $page_question_users->user_id = $user;
-                                $page_question_users->save();
+                if ($request['category_id'] && $request['location_id']) {
+                    $page_question              = new PageQuestions();
+                    $page_question->page_id     = $page->id;
+                    $page_question->category_id = $request['category_id'];
+                    $page_question->location_id = $request['location_id'];
+                    $page_question->save();
+                    if ($page_question) {
+                        $question_users_array = json_decode($request->question_users, true);
+                        if ($question_users_array && count($question_users_array) > 0) {
+                            foreach ($question_users_array as $key => $user) {
+                                if ($user) {
+                                    $page_question_users                 = new PageQuestionUsers();
+                                    $page_question_users->page_detail_id = $page_question->id;
+                                    $page_question_users->user_id        = $user;
+                                    $page_question_users->save();
+                                }
                             }
                         }
                     }
                 }
             }
-            }
             $response = [
-                'status' => 200,
+                'status'  => 200,
                 'message' => "Question Created Success",
-                'data' => $page
+                'data'    => $page
             ];
             return response()->json($response);
         }
         $response = [
-            'status' => 404,
+            'status'  => 404,
             'message' => "error",
-            'data' => null
+            'data'    => null
         ];
         return response()->json($response);
     }
@@ -243,19 +281,19 @@ class PageController extends Controller
 
     public function pageEdit($id)
     {
-        $model = Page::findOrFail($id);
-        $question_options =Setting::first()->toArray();
+        $model            = Page::findOrFail($id);
+        $question_options = Setting::first()->toArray();
 
         $page_question = PageQuestions::where('page_id', $model->id)->with('category')->with('location')->with(['users' => function ($query) {
             $query->with('user');
         }])->get()->toArray();
 //      dd($page_question);
-        return view('admin.pages.edit', compact('model', 'page_question','question_options'));
+        return view('admin.pages.edit', compact('model', 'page_question', 'question_options'));
     }
 
     public function pageShow($id)
     {
-        $model = Page::findOrFail($id);
+        $model         = Page::findOrFail($id);
         $page_question = PageQuestions::where('page_id', $model->id)->with('category')
             ->with(['category' => function ($query) {
                 $query->with('questions');
@@ -265,9 +303,9 @@ class PageController extends Controller
                 $query->with('user');
             }])->get()->toArray();
 
-        $question_options =Setting::first()->toArray();
+        $question_options = Setting::first()->toArray();
 //        dd($question_options);
-        return view('admin.pages.show', compact('model', 'page_question','question_options'));
+        return view('admin.pages.show', compact('model', 'page_question', 'question_options'));
     }
 
     public function pageUpdate(pageEdit $request, $id)
@@ -286,14 +324,14 @@ class PageController extends Controller
 
         // check data deleted or not
         if ($page != null) {
-            $page_copy = new Page();
-            $page_copy->name = $page->name;
-            $page_copy->from_date = $page->from_date;
-            $page_copy->to_date = $page->to_date;
-            $page_copy->option_1_percent =$page->option_1_percent ?? 0;
-            $page_copy->option_2_percent =$page->option_2_percent ?? 0;
+            $page_copy                   = new Page();
+            $page_copy->name             = $page->name;
+            $page_copy->from_date        = $page->from_date;
+            $page_copy->to_date          = $page->to_date;
+            $page_copy->option_1_percent = $page->option_1_percent ?? 0;
+            $page_copy->option_2_percent = $page->option_2_percent ?? 0;
             $page_copy->option_3_percent = $page->option_3_percent ?? 0;
-            
+
             $page_copy->option_5_percent = $page->option_5_percent ?? 0;
             $page_copy->save();
             if ($page_copy) {
@@ -302,23 +340,23 @@ class PageController extends Controller
                 if ($question_categoris_array && count($question_categoris_array) > 0) {
                     foreach ($question_categoris_array as $page_q) {
                         if ($page_q) {
-                            if($page_q->category_id && $page_q->location_id){
-                            $page_question = new PageQuestions();
-                            $page_question->page_id = $page_copy->id;
-                            $page_question->category_id = $page_q->category_id;
-                            $page_question->location_id = $page_q->location_id;
-                            $page_question->save();
+                            if ($page_q->category_id && $page_q->location_id) {
+                                $page_question              = new PageQuestions();
+                                $page_question->page_id     = $page_copy->id;
+                                $page_question->category_id = $page_q->category_id;
+                                $page_question->location_id = $page_q->location_id;
+                                $page_question->save();
 
-                            $page_users = PageQuestionUsers::where('page_detail_id', $page_q->id)->pluck('user_id');
-                            if ($page_users && count($page_users) > 0) {
-                                foreach ($page_users as $user) {
-                                    $page_question_users = new PageQuestionUsers();
-                                    $page_question_users->page_detail_id = $page_question->id;
-                                    $page_question_users->user_id = $user;
-                                    $page_question_users->save();
+                                $page_users = PageQuestionUsers::where('page_detail_id', $page_q->id)->pluck('user_id');
+                                if ($page_users && count($page_users) > 0) {
+                                    foreach ($page_users as $user) {
+                                        $page_question_users                 = new PageQuestionUsers();
+                                        $page_question_users->page_detail_id = $page_question->id;
+                                        $page_question_users->user_id        = $user;
+                                        $page_question_users->save();
+                                    }
                                 }
                             }
-                        }
                         }
                     }
                 }
@@ -326,7 +364,8 @@ class PageController extends Controller
                 $message = trans('admin.duplicate_success');
             }
 
-        } else {
+        }
+        else {
             $success = false;
             $message = trans('admin.duplicate_error');
         }
@@ -349,7 +388,8 @@ class PageController extends Controller
 
             $success = true;
             $message = trans('admin.disabled_success');
-        } else {
+        }
+        else {
             $success = true;
             $message = trans('admin.disabled_error');
         }
@@ -372,7 +412,8 @@ class PageController extends Controller
 
             $success = true;
             $message = trans('admin.activated_success');
-        } else {
+        }
+        else {
             $success = true;
             $message = trans('admin.activated_error');
         }
@@ -394,14 +435,15 @@ class PageController extends Controller
             $raw_query = 'DELETE page_details_users
                 FROM page_details_users
                 INNER JOIN page_details ON page_details.`id` = page_details_users.`page_detail_id`
-                WHERE page_details.`page_id` = '.$id;
-            $nrd = DB::delete($raw_query);
+                WHERE page_details.`page_id` = ' . $id;
+            $nrd       = DB::delete($raw_query);
 
             PageQuestions::where('page_id', $id)->delete();
 
             $success = true;
             $message = trans('company.delete_success');
-        } else {
+        }
+        else {
             $success = true;
             $message = trans('company.delete_error');
         }
