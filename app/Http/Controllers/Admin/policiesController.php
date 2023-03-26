@@ -34,7 +34,7 @@ class policiesController extends Controller
     {
         $result = [];
 
-        $path = "polices_doc";
+        $path = "polices";
 
         if ($current_path) {
             $path = $current_path;
@@ -57,7 +57,7 @@ class policiesController extends Controller
 
     public function listAllFiles()
     {
-        $list_all_files = $this->list_all_files("polices_doc");
+        $list_all_files = $this->list_all_files("polices");
         return view($this->viewPath . "list_all_files", [
             "list_all_files" => $list_all_files
         ]);
