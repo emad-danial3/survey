@@ -85,6 +85,7 @@
             <li class=""><a href="{{ url(route('admin.departments.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
+    @if(auth()->user()->id == 4)
     <li class="treeview {{ active_menu('policies')[0] }}">
         <a href="#">
             <i class="fa fa-adn"></i> <span>{{ trans('admin.policies') }}</span>
@@ -95,6 +96,7 @@
             <li class=""><a href="{{ url('admin/policies/create') }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
+    @endif
 
     @if(auth()->user()->id == 2)
         <li class="treeview {{ active_menu('reports')[0] }}">
