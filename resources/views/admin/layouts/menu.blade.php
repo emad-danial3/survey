@@ -1,6 +1,7 @@
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
 
+     @if(auth()->user()->id == 1 || auth()->user()->id == 2)
     <li class="treeview {{ active_menu('settings')[0] }}">
         <a href="#">
             <i class="fa fa-dashboard"></i> <span>{{ trans('admin.Dashboard') }}</span>
@@ -85,7 +86,8 @@
             <li class=""><a href="{{ url(route('admin.departments.create')) }}"><i class="fa fa-plus"></i>{{ trans('admin.add') }}</a></li>
         </ul>
     </li>
-    @if(auth()->user()->id == 4)
+    @endif
+     @if(auth()->user()->id == 4)
     <li class="treeview {{ active_menu('policies')[0] }}">
         <a href="#">
             <i class="fa fa-adn"></i> <span>{{ trans('admin.policies') }}</span>
@@ -97,7 +99,6 @@
         </ul>
     </li>
     @endif
-
     @if(auth()->user()->id == 2)
         <li class="treeview {{ active_menu('reports')[0] }}">
             <a href="#">
@@ -108,7 +109,6 @@
                 <li class=""><a href="{{ url('admin/reports') }}"><i class="fa fa-globe"></i>{{ trans('admin.reports') }}</a></li>
             </ul>
         </li>
-
 
         <li class="treeview {{ active_menu('admins')[0] }}">
             <a href="#">
@@ -124,3 +124,4 @@
     @endif
 
 </ul>
+
